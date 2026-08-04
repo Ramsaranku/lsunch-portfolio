@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saran Kumar R — Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- EmailJS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+  <!-- =========================================================
+       CUSTOM CURSOR
+  ========================================================= -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <!-- =========================================================
+       FLOATING PARTICLES CANVAS
+  ========================================================= -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- =========================================================
+       NAVIGATION BAR
+  ========================================================= -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">SK<span class="accent">.</span></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- =========================================================
+       HERO SECTION
+  ========================================================= -->
+  <section class="section" id="hero">
+    <div class="hero-inner">
+      <!-- Left: Text Content -->
+      <div class="hero-text" data-parallax="0.03">
+        <p class="hero-greeting">Hello, I'm</p>
+        <h1 class="hero-name glowing-text">SARAN<br/>KUMAR R</h1>
+        <div class="hero-role-wrap">
+          <span class="role-prefix">I'm a </span>
+          <span class="hero-role" id="heroRole">Web Developer</span>
+          <span class="cursor-blink">|</span>
+        </div>
+        <p class="hero-bio">
+          I create modern websites, innovative applications, and premium digital experiences.<br/>
+          Founder, developer, and designer passionate about building futuristic solutions.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">
+            <i class="fas fa-envelope"></i> Hire Me
+          </a>
+          <a href="#projects" class="btn btn-outline">
+            <i class="fas fa-rocket"></i> View Projects
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Profile Image -->
+      <div class="hero-image-wrap" data-parallax="-0.05">
+        <div class="hero-image-frame floating">
+          <div class="hero-image-glow"></div>
+          <img src="sk.jpeg" alt="Saran Kumar R" class="hero-img" />
+          <div class="hero-image-ring ring1"></div>
+          <div class="hero-image-ring ring2"></div>
+          <div class="hero-image-ring ring3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <p>Scroll Down</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ABOUT ME + ACHIEVEMENTS SECTION
+  ========================================================= -->
+  <section class="section reveal-section" id="about">
+    <div class="section-inner glass-card">
+      <div class="two-col">
+
+        <!-- Left: Image Slider -->
+        <div class="about-slider-wrap">
+          <div class="about-slider" id="aboutSlider">
+            <img src="about1.jpeg" alt="About 1" class="slider-img active" />
+            <img src="about2.jpeg" alt="About 2" class="slider-img" />
+            <img src="about3.jpeg" alt="About 3" class="slider-img" />
+          </div>
+          <div class="slider-dots" id="sliderDots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+
+        <!-- Right: About Content -->
+        <div class="about-content">
+          <div class="section-tag">Who I Am</div>
+          <h2 class="section-title glowing-text">ABOUT ME</h2>
+          <p class="about-para">
+            I'm <strong>Saran Kumar R</strong>, a passionate full-stack developer, app developer, and UI/UX designer based in Tamil Nadu. I specialise in crafting high-performance digital products — from responsive websites to intelligent mobile applications. As the founder of <strong>ChillBros</strong>, I lead a team building futuristic digital solutions for real-world clients. My mission is to blend elegant design with powerful engineering to create experiences that leave a lasting impression.
+          </p>
+
+          <div class="achievements-grid">
+            <div class="achievement-card reveal-card">
+              <i class="fas fa-trophy"></i>
+              <div>
+                <strong>1st Prize</strong>
+                <span>Paper Presentation — Coimbatore Institute of Technology</span>
+              </div>
+            </div>
+            <div class="achievement-card reveal-card">
+              <i class="fas fa-trophy"></i>
+              <div>
+                <strong>1st Prize</strong>
+                <span>Paper Presentation — Sree Sakthi Engineering College</span>
+              </div>
+            </div>
+            <div class="achievement-card reveal-card">
+              <i class="fas fa-medal"></i>
+              <div>
+                <strong>2nd Prize</strong>
+                <span>Paper Presentation — Rathinam College</span>
+              </div>
+            </div>
+            <div class="achievement-card reveal-card">
+              <i class="fas fa-code"></i>
+              <div>
+                <strong>1st Prize</strong>
+                <span>LeetCode Competition — SNS College of Engineering</span>
+              </div>
+            </div>
+            <div class="achievement-card reveal-card">
+              <i class="fas fa-bug"></i>
+              <div>
+                <strong>2nd Prize</strong>
+                <span>Code Debugging Competition Winner</span>
+              </div>
+            </div>
+            <div class="achievement-card reveal-card">
+              <i class="fas fa-id-card"></i>
+              <div>
+                <strong>Tamil Nadu</strong>
+                <span>Startup Card Winner</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       TOOLS + LANGUAGES SECTION
+  ========================================================= -->
+  <section class="section reveal-section" id="skills">
+    <div class="section-inner glass-card">
+      <div class="two-col">
+
+        <!-- Left: Tools Known -->
+        <div class="skills-col">
+          <div class="section-tag">Toolkit</div>
+          <h2 class="section-title glowing-text">TOOLS KNOWN</h2>
+
+          <div class="skills-group">
+            <p class="skills-group-label">Frontend &amp; Dev Tools</p>
+            <div class="tool-grid">
+              <div class="tool-card reveal-card"><i class="fas fa-code"></i><span>VS Code</span></div>
+              <div class="tool-card reveal-card"><i class="fab fa-git-alt"></i><span>Git</span></div>
+              <div class="tool-card reveal-card"><i class="fab fa-github"></i><span>GitHub</span></div>
+              <div class="tool-card reveal-card"><i class="fab fa-docker"></i><span>Docker</span></div>
+            </div>
+          </div>
+
+          <div class="skills-group">
+            <p class="skills-group-label">Testing Tools</p>
+            <div class="tool-grid">
+              <div class="tool-card reveal-card"><i class="fas fa-paper-plane"></i><span>Postman</span></div>
+              <div class="tool-card reveal-card"><i class="fas fa-satellite-dish"></i><span>Insomnia</span></div>
+            </div>
+          </div>
+
+          <div class="skills-group">
+            <p class="skills-group-label">Database Tools</p>
+            <div class="tool-grid">
+              <div class="tool-card reveal-card"><i class="fas fa-database"></i><span>PostgreSQL</span></div>
+              <div class="tool-card reveal-card"><i class="fas fa-leaf"></i><span>MongoDB</span></div>
+              <div class="tool-card reveal-card"><i class="fas fa-table"></i><span>DBeaver</span></div>
+            </div>
+          </div>
+
+          <div class="skills-group">
+            <p class="skills-group-label">App Development</p>
+            <div class="tool-grid">
+              <div class="tool-card reveal-card"><i class="fab fa-android"></i><span>Android Studio</span></div>
+              <div class="tool-card reveal-card"><i class="fas fa-terminal"></i><span>Cursor</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Languages Known -->
+        <div class="skills-col">
+          <div class="section-tag">Languages</div>
+          <h2 class="section-title glowing-text">LANGUAGES KNOWN</h2>
+
+          <div class="skills-group">
+            <p class="skills-group-label">Frontend</p>
+            <div class="lang-list">
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fab fa-html5"></i> HTML</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="95"></div></div>
+              </div>
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fab fa-css3-alt"></i> CSS</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="90"></div></div>
+              </div>
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fab fa-js-square"></i> JavaScript</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="85"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skills-group">
+            <p class="skills-group-label">Backend</p>
+            <div class="lang-list">
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fab fa-node-js"></i> Node.js</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="80"></div></div>
+              </div>
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fab fa-python"></i> Python</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="75"></div></div>
+              </div>
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fab fa-java"></i> Java</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="70"></div></div>
+              </div>
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fab fa-php"></i> PHP</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="65"></div></div>
+              </div>
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fas fa-gem"></i> Ruby</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="55"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skills-group">
+            <p class="skills-group-label">Database</p>
+            <div class="lang-list">
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fas fa-leaf"></i> MongoDB</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="80"></div></div>
+              </div>
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fas fa-database"></i> MySQL</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="78"></div></div>
+              </div>
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fas fa-database"></i> PostgreSQL</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="72"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       PROJECTS / STARTUP SECTION
+  ========================================================= -->
+  <section class="section reveal-section" id="projects">
+    <div class="section-inner glass-card">
+      <div class="section-tag center-tag">Our Startup</div>
+      <h2 class="section-title glowing-text center-title">CHILLBROS STARTUP PROJECTS</h2>
+      <p class="startup-tagline">
+        <span class="accent-glow">CHILLBROS</span> — Building the future, one product at a time.
+      </p>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <a href="https://github.com/Ramsaranku/Fit-Pro" target="_blank" class="project-card reveal-card" rel="noopener">
+          <div class="project-img-wrap">
+            <img src="fitpro.png" alt="FIT PRO Gym Website" />
+            <div class="project-overlay">
+              <i class="fas fa-external-link-alt"></i>
+              <span>Visit Project</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>FIT PRO</h3>
+            <p class="project-sub">Gym Website</p>
+            <p class="project-desc">A premium fitness & gym website featuring class schedules, trainer profiles, membership plans, and an online booking system — built to convert visitors into members.</p>
+            <div class="project-tags">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Project 2 -->
+        <a href="https://pvacademy.co.in" target="_blank" class="project-card reveal-card" rel="noopener">
+          <div class="project-img-wrap">
+            <img src="pvacademy.png" alt="PV Academy Tuition Centre Website" />
+            <div class="project-overlay">
+              <i class="fas fa-external-link-alt"></i>
+              <span>Visit Project</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>PV ACADEMY</h3>
+            <p class="project-sub">Tuition Centre Website</p>
+            <p class="project-desc">A modern education platform for a tuition centre with course listings, faculty introductions, student testimonials, and online enquiry — designed for trust and clarity.</p>
+            <div class="project-tags">
+              <span>HTML</span><span>CSS</span><span>Node.js</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       EDUCATION SECTION
+  ========================================================= -->
+  <section class="section reveal-section" id="education">
+    <div class="section-inner glass-card">
+      <div class="section-tag center-tag">My Journey</div>
+      <h2 class="section-title glowing-text center-title">EDUCATION</h2>
+
+      <div class="timeline">
+
+        <!-- Row 1 -->
+        <div class="timeline-row reveal-card">
+          <div class="timeline-text left-text">
+            <div class="edu-badge"><i class="fas fa-school"></i> 10th Standard</div>
+            <h3>St. Thomas The Apostle Matriculation Higher Secondary School</h3>
+            <p>Completed Secondary School Leaving Certificate (SSLC) with distinction, building a strong academic foundation across Science, Mathematics, and Languages.</p>
+          </div>
+          <div class="timeline-dot-wrap">
+            <div class="timeline-line"></div>
+            <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-image right-image">
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="timeline-row reveal-card">
+          <div class="timeline-image left-image">
+          </div>
+          <div class="timeline-dot-wrap">
+            <div class="timeline-line"></div>
+            <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-text right-text">
+            <div class="edu-badge"><i class="fas fa-graduation-cap"></i> 12th Standard</div>
+            <h3>St. Thomas Matriculation Higher Secondary School, Thoothukudi</h3>
+            <p>Completed Higher Secondary Certificate (HSC) focusing on Computer Science, Mathematics, and Physics — sparking my passion for programming and technology.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CONTACT SECTION
+  ========================================================= -->
+  <section class="section reveal-section" id="contact">
+    <div class="section-inner glass-card">
+      <div class="section-tag center-tag">Let's Connect</div>
+      <h2 class="section-title glowing-text center-title">CONTACT ME</h2>
+
+      <div class="two-col contact-cols">
+
+        <!-- Left: Social Icons -->
+        <div class="contact-social">
+          <p class="social-intro">Reach out through any platform. I respond within 24 hours.</p>
+          <div class="social-links">
+            <a href="https://wa.me/8248930293" target="_blank" class="social-link whatsapp" rel="noopener">
+              <i class="fab fa-whatsapp"></i>
+              <div>
+                <strong>WhatsApp</strong>
+                <span>Chat directly with me</span>
+              </div>
+            </a>
+            <a href="https://instagram.com/yourhandle" target="_blank" class="social-link instagram" rel="noopener">
+              <i class="fab fa-instagram"></i>
+              <div>
+                <strong>Instagram</strong>
+                <span>Follow my creative journey</span>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/saran-kumar-r" target="_blank" class="social-link linkedin" rel="noopener">
+              <i class="fab fa-linkedin-in"></i>
+              <div>
+                <strong>LinkedIn</strong>
+                <span>Saran Kumar R</span>
+              </div>
+            </a>
+            <a href="mailto:saran.r1408@gmail.com" class="social-link gmail">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <strong>Gmail</strong>
+                <span>saran.r1408@gmail.com</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Enquiry Form -->
+        <div class="contact-form-wrap">
+          <p class="form-intro">Send me a project enquiry or service request.</p>
+          <div id="formMsg" class="form-msg"></div>
+          <div class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" name="from_name" placeholder="John Doe" required />
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="reply_to" placeholder="john@example.com" required />
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" name="phone" placeholder="+91 9876543210" />
+            </div>
+            <div class="form-group">
+              <label>Service Needed</label>
+              <select name="service">
+                <option value="">— Select a Service —</option>
+                <option>Web Development</option>
+                <option>App Development</option>
+                <option>UI/UX Design</option>
+                <option>Full-Stack Solution</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea name="message" rows="4" placeholder="Tell me about your project..."></textarea>
+            </div>
+            <button type="button" class="btn btn-primary btn-full" id="submitBtn" onclick="sendEmail()">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+  <footer class="footer">
+    <p>Designed &amp; Developed by <span class="accent-glow">Saran Kumar R</span> &copy; 2026</p>
+    <p class="footer-sub">ChillBros — Building the Future</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
