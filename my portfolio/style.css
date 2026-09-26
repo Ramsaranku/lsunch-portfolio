@@ -1047,7 +1047,6 @@ body {
     position: fixed; top: var(--nav-height); left: 0; right: 0;
     flex-direction: column; gap: 0;
     background: rgba(2, 8, 24, 0.97);
-    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
     padding: 0;
     max-height: 0; overflow: hidden;
