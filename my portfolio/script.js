@@ -1,74 +1,54 @@
 /* =========================================================
    SARAN KUMAR R — Portfolio JavaScript
-   =========================================================
-   Features:
-   1. Custom cursor tracking
-   2. Floating particle canvas
-   3. Navbar scroll + active link highlighting
-   4. Hamburger mobile menu
-   5. Hero dynamic role text (typing/fade)
-   6. Parallax mouse effect in hero
-   7. About section image slider
-   8. Scroll reveal for sections + cards
-   9. Progress bar animation on scroll
-   10. EmailJS form submission
 ========================================================= */
 
 /* =========================================================
-   EMAILJS CONFIGURATION
-   -------------------------------------------------------
-   Replace the three values below with your actual EmailJS
-   credentials from https://www.emailjs.com/
-   
-   SERVICE_ID   → Dashboard → Email Services → Service ID
-   TEMPLATE_ID  → Email Templates → Template ID
-   PUBLIC_KEY   → Account → General → Public Key
+   EMAILJS INITIALIZATION
 ========================================================= */
 const EMAILJS_SERVICE_ID  = 'service_w6pq20a';
 const EMAILJS_TEMPLATE_ID = 'template_6q8waaf';
 const EMAILJS_PUBLIC_KEY  = '7iEQulO84r4XvsmRX';
 
-/* =========================================================
-   INITIALISE EmailJS
-========================================================= */
 (function () {
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
 })();
 
 /* =========================================================
-   1. CUSTOM CURSOR
+   1. CUSTOM CURSOR TRACKING (Pointer devices only)
 ========================================================= */
 const cursorDot     = document.querySelector('.cursor-dot');
 const cursorOutline = document.querySelector('.cursor-outline');
 let mouseX = 0, mouseY = 0;
 let outlineX = 0, outlineY = 0;
 
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  cursorDot.style.left = mouseX + 'px';
-  cursorDot.style.top  = mouseY + 'px';
-});
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && cursorDot && cursorOutline) {
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorDot.style.left = mouseX + 'px';
+    cursorDot.style.top  = mouseY + 'px';
+  });
 
-// Smooth outline follow
-function animateCursor() {
-  const speed = 0.14;
-  outlineX += (mouseX - outlineX) * speed;
-  outlineY += (mouseY - outlineY) * speed;
-  cursorOutline.style.left = outlineX + 'px';
-  cursorOutline.style.top  = outlineY + 'px';
-  requestAnimationFrame(animateCursor);
+  function animateCursor() {
+    const speed = 0.14;
+    outlineX += (mouseX - outlineX) * speed;
+    outlineY += (mouseY - outlineY) * speed;
+    cursorOutline.style.left = outlineX + 'px';
+    cursorOutline.style.top  = outlineY + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  document.querySelectorAll('a, button, .tool-card, .project-card, .achievement-card, input, select, textarea').forEach(el => {
+    el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovered'));
+  });
 }
-animateCursor();
-
-// Enlarge cursor on interactive elements
-document.querySelectorAll('a, button, .tool-card, .project-card, .achievement-card, input, select, textarea').forEach(el => {
-  el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovered'));
-  el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovered'));
-});
 
 /* =========================================================
-   2. PARTICLE CANVAS
+   2. FLOATING CANVAS PARTICLES
 ========================================================= */
 const canvas = document.getElementById('particleCanvas');
 const ctx    = canvas.getContext('2d');
@@ -103,28 +83,30 @@ class Particle {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fillStyle = this.color;
-    ctx.shadowBlur  = 8;
+    ctx.shadowBlur  = 6;
     ctx.shadowColor = this.color;
     ctx.fill();
   }
 }
 
-// Create particles
-for (let i = 0; i < 120; i++) particles.push(new Particle());
+// Particle count scaled to screen size
+const particleCount = window.innerWidth < 768 ? 45 : 100;
+for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
 function animateParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  // Draw connecting lines between nearby particles
+  const maxDistance = window.innerWidth < 768 ? 70 : 100;
+
   for (let i = 0; i < particles.length; i++) {
     for (let j = i + 1; j < particles.length; j++) {
       const dx   = particles[i].x - particles[j].x;
       const dy   = particles[i].y - particles[j].y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 100) {
+      if (dist < maxDistance) {
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
         ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.strokeStyle = `rgba(0, 212, 255, ${0.06 * (1 - dist / 100)})`;
+        ctx.strokeStyle = `rgba(0, 212, 255, ${0.06 * (1 - dist / maxDistance)})`;
         ctx.lineWidth   = 0.5;
         ctx.stroke();
       }
@@ -136,31 +118,72 @@ function animateParticles() {
 animateParticles();
 
 /* =========================================================
-   3. NAVBAR — Scroll state & active link highlighting
+   3. HIGH-PRECISION SMOOTH SCROLL WITH OFFSET
 ========================================================= */
-const navbar  = document.getElementById('navbar');
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-link');
+function getNavbarHeight() {
+  const navbar = document.getElementById('navbar');
+  return navbar ? navbar.offsetHeight : 70;
+}
 
-window.addEventListener('scroll', () => {
-  // Scrolled class
-  if (window.scrollY > 50) navbar.classList.add('scrolled');
-  else navbar.classList.remove('scrolled');
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
 
-  // Active nav link
-  let current = '';
-  sections.forEach(sec => {
-    const top = sec.offsetTop - 100;
-    if (window.scrollY >= top) current = sec.getAttribute('id');
-  });
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      e.preventDefault();
+
+      // Close mobile menu if active
+      if (hamburger.classList.contains('open')) {
+        hamburger.classList.remove('open');
+        navLinksList.classList.remove('open');
+      }
+
+      const offset = getNavbarHeight() + 12;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   });
 });
 
 /* =========================================================
-   4. HAMBURGER MOBILE MENU
+   4. NAVBAR SCROLL STATE & ACTIVE LINK MONITOR
+========================================================= */
+const navbar   = document.getElementById('navbar');
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 40) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+
+  let current = '';
+  const currentNavHeight = getNavbarHeight();
+
+  sections.forEach(sec => {
+    const top = sec.offsetTop - currentNavHeight - 80;
+    const height = sec.offsetHeight;
+    if (window.scrollY >= top && window.scrollY < top + height) {
+      current = sec.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+
+/* =========================================================
+   5. MOBILE HAMBURGER MENU
 ========================================================= */
 const hamburger = document.getElementById('hamburger');
 const navLinksList = document.getElementById('navLinks');
@@ -170,23 +193,28 @@ hamburger.addEventListener('click', () => {
   navLinksList.classList.toggle('open');
 });
 
-// Close menu when a link is clicked
-navLinks.forEach(link => {
-  link.addEventListener('click', () => {
+// Dismiss navigation on external click
+document.addEventListener('click', (e) => {
+  if (!navbar.contains(e.target) && navLinksList.classList.contains('open')) {
     hamburger.classList.remove('open');
     navLinksList.classList.remove('open');
-  });
+  }
 });
 
 /* =========================================================
-   5. HERO DYNAMIC ROLE TEXT
+   6. HERO DYNAMIC ROLE TEXT ROTATION
 ========================================================= */
-const roles = ['Web Developer', 'App Developer', 'App Designer', 'Web Designer'];
+const roles = [
+  'Full Stack Developer',
+  'Software Developer Intern',
+  'React & Node Specialist',
+  'REST API Engineer'
+];
 const roleEl = document.getElementById('heroRole');
 let roleIndex = 0;
 
 function changeRole() {
-  // Fade out
+  if (!roleEl) return;
   roleEl.style.opacity = '0';
   roleEl.style.transform = 'translateY(10px)';
   roleEl.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
@@ -194,43 +222,45 @@ function changeRole() {
   setTimeout(() => {
     roleIndex = (roleIndex + 1) % roles.length;
     roleEl.textContent = roles[roleIndex];
-    // Fade in
     roleEl.style.opacity = '1';
     roleEl.style.transform = 'translateY(0)';
   }, 420);
 }
 
-setInterval(changeRole, 2200);
+setInterval(changeRole, 2500);
 
 /* =========================================================
-   6. HERO PARALLAX (Mouse)
+   7. HERO PARALLAX MOUSE EFFECT (Desktop only)
 ========================================================= */
-const heroSection   = document.getElementById('hero');
+const heroSection = document.getElementById('hero');
 const parallaxItems = heroSection ? heroSection.querySelectorAll('[data-parallax]') : [];
 
-document.addEventListener('mousemove', (e) => {
-  const cx = window.innerWidth  / 2;
-  const cy = window.innerHeight / 2;
-  const dx = (e.clientX - cx) / cx;
-  const dy = (e.clientY - cy) / cy;
+if (window.innerWidth > 1024) {
+  document.addEventListener('mousemove', (e) => {
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2;
+    const dx = (e.clientX - cx) / cx;
+    const dy = (e.clientY - cy) / cy;
 
-  parallaxItems.forEach(item => {
-    const factor = parseFloat(item.getAttribute('data-parallax'));
-    const mx = dx * factor * 60;
-    const my = dy * factor * 40;
-    item.style.transform = `translate(${mx}px, ${my}px)`;
-    item.style.transition = 'transform 0.15s ease-out';
+    parallaxItems.forEach(item => {
+      const factor = parseFloat(item.getAttribute('data-parallax'));
+      const mx = dx * factor * 50;
+      const my = dy * factor * 35;
+      item.style.transform = `translate(${mx}px, ${my}px)`;
+      item.style.transition = 'transform 0.15s ease-out';
+    });
   });
-});
+}
 
 /* =========================================================
-   7. ABOUT IMAGE SLIDER
+   8. ABOUT IMAGE SLIDER
 ========================================================= */
 const sliderImgs = document.querySelectorAll('.slider-img');
 const sliderDots = document.querySelectorAll('.dot');
 let sliderIndex  = 0;
 
 function goToSlide(index) {
+  if (!sliderImgs.length) return;
   sliderImgs[sliderIndex].classList.remove('active');
   sliderDots[sliderIndex].classList.remove('active');
   sliderIndex = index % sliderImgs.length;
@@ -238,47 +268,37 @@ function goToSlide(index) {
   sliderDots[sliderIndex].classList.add('active');
 }
 
-// Auto-advance every 2 seconds
-let sliderTimer = setInterval(() => goToSlide(sliderIndex + 1), 2000);
+let sliderTimer = setInterval(() => goToSlide(sliderIndex + 1), 2400);
 
-// Manual dot click
 sliderDots.forEach((dot, i) => {
   dot.addEventListener('click', () => {
     clearInterval(sliderTimer);
     goToSlide(i);
-    sliderTimer = setInterval(() => goToSlide(sliderIndex + 1), 2000);
+    sliderTimer = setInterval(() => goToSlide(sliderIndex + 1), 2400);
   });
 });
 
 /* =========================================================
-   8. SCROLL REVEAL — Sections
+   9. INTERSECTION OBSERVERS (Scroll reveals & Progress bars)
 ========================================================= */
 const revealSections = document.querySelectorAll('.reveal-section');
-
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      // Once visible, unobserve for performance
       sectionObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
-
+}, { threshold: 0.08 });
 revealSections.forEach(sec => sectionObserver.observe(sec));
 
-/* =========================================================
-   8b. SCROLL REVEAL — Individual Cards (staggered)
-========================================================= */
 const revealCards = document.querySelectorAll('.reveal-card');
-
 const cardObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, index) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      // Stagger delay based on sibling position
       const siblings = entry.target.parentElement.querySelectorAll('.reveal-card');
       let delay = 0;
-      siblings.forEach((sib, i) => { if (sib === entry.target) delay = i * 80; });
+      siblings.forEach((sib, i) => { if (sib === entry.target) delay = (i % 3) * 80; });
 
       setTimeout(() => {
         entry.target.classList.add('visible');
@@ -286,15 +306,10 @@ const cardObserver = new IntersectionObserver((entries) => {
       cardObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.15 });
-
+}, { threshold: 0.1 });
 revealCards.forEach(card => cardObserver.observe(card));
 
-/* =========================================================
-   9. PROGRESS BAR ANIMATION (Language skill bars)
-========================================================= */
 const langFills = document.querySelectorAll('.lang-fill');
-
 const barObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -303,30 +318,23 @@ const barObserver = new IntersectionObserver((entries) => {
       barObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.5 });
-
+}, { threshold: 0.3 });
 langFills.forEach(bar => barObserver.observe(bar));
 
 /* =========================================================
    10. EMAILJS FORM SUBMISSION
-   -------------------------------------------------------
-   Make sure your EmailJS template has these variables:
-   {{from_name}}, {{reply_to}}, {{phone}},
-   {{service}}, {{message}}
 ========================================================= */
 window.sendEmail = function () {
   const btn    = document.getElementById('submitBtn');
   const msgDiv = document.getElementById('formMsg');
   const form   = document.getElementById('contactForm');
 
-  // Collect field values
   const fromName = form.querySelector('[name="from_name"]').value.trim();
   const replyTo  = form.querySelector('[name="reply_to"]').value.trim();
   const phone    = form.querySelector('[name="phone"]').value.trim();
   const service  = form.querySelector('[name="service"]').value;
   const message  = form.querySelector('[name="message"]').value.trim();
 
-  // Basic validation
   if (!fromName || !replyTo || !message) {
     showMsg('Please fill in your Name, Email, and Message.', 'error');
     return;
@@ -336,7 +344,6 @@ window.sendEmail = function () {
     return;
   }
 
-  // Loading state
   btn.disabled = true;
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
   msgDiv.style.display = 'none';
@@ -351,15 +358,14 @@ window.sendEmail = function () {
 
   emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
     .then(() => {
-      showMsg('🚀 Message sent successfully! I\'ll get back to you within 24 hours.', 'success');
-      // Reset form
+      showMsg('🚀 Message sent successfully! I will get back to you within 24 hours.', 'success');
       form.querySelectorAll('input, textarea, select').forEach(el => { el.value = ''; });
       btn.disabled = false;
       btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
     })
     .catch((err) => {
       console.error('EmailJS Error:', err);
-      showMsg('Oops! Something went wrong. Please try again or reach out directly.', 'error');
+      showMsg('Oops! Something went wrong. Please reach out directly.', 'error');
       btn.disabled = false;
       btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
     });
@@ -369,7 +375,6 @@ function showMsg(text, type) {
   const msgDiv = document.getElementById('formMsg');
   msgDiv.textContent = text;
   msgDiv.className = 'form-msg ' + type;
-  msgDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function isValidEmail(email) {
@@ -377,29 +382,12 @@ function isValidEmail(email) {
 }
 
 /* =========================================================
-   11. SMOOTH SCROLL FALLBACK (for older browsers)
-========================================================= */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', (e) => {
-    const target = document.querySelector(anchor.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-
-/* =========================================================
-   12. HERO ENTRANCE ANIMATION
+   11. HERO INITIAL MOUNT ENTRANCE
 ========================================================= */
 window.addEventListener('load', () => {
   const heroText = document.querySelector('.hero-text');
   const heroImg  = document.querySelector('.hero-image-wrap');
 
-  if (heroText) {
-    heroText.style.animation = 'fadeInUp 0.9s ease 0.2s both';
-  }
-  if (heroImg) {
-    heroImg.style.animation = 'fadeInUp 0.9s ease 0.5s both';
-  }
+  if (heroText) heroText.style.animation = 'fadeInUp 0.9s ease 0.2s both';
+  if (heroImg)  heroImg.style.animation  = 'fadeInUp 0.9s ease 0.45s both';
 });

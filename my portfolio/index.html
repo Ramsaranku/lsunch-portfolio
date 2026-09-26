@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>Saran Kumar R — Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- EmailJS CDN -->
@@ -14,20 +14,14 @@
 </head>
 <body>
 
-  <!-- =========================================================
-       CUSTOM CURSOR
-  ========================================================= -->
+  <!-- CUSTOM CURSOR (Active on fine pointer devices) -->
   <div class="cursor-dot"></div>
   <div class="cursor-outline"></div>
 
-  <!-- =========================================================
-       FLOATING PARTICLES CANVAS
-  ========================================================= -->
+  <!-- FLOATING PARTICLES CANVAS -->
   <canvas id="particleCanvas"></canvas>
 
-  <!-- =========================================================
-       NAVIGATION BAR
-  ========================================================= -->
+  <!-- NAVIGATION BAR -->
   <nav class="navbar" id="navbar">
     <div class="nav-logo">SK<span class="accent">.</span></div>
     <ul class="nav-links" id="navLinks">
@@ -38,28 +32,24 @@
       <li><a href="#education" class="nav-link">Education</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- =========================================================
-       HERO SECTION
-  ========================================================= -->
+  <!-- HERO SECTION -->
   <section class="section" id="hero">
     <div class="hero-inner">
-      <!-- Left: Text Content -->
       <div class="hero-text" data-parallax="0.03">
         <p class="hero-greeting">Hello, I'm</p>
         <h1 class="hero-name glowing-text">SARAN<br/>KUMAR R</h1>
         <div class="hero-role-wrap">
           <span class="role-prefix">I'm a </span>
-          <span class="hero-role" id="heroRole">Web Developer</span>
+          <span class="hero-role" id="heroRole">Full Stack Developer</span>
           <span class="cursor-blink">|</span>
         </div>
         <p class="hero-bio">
-          I create modern websites, innovative applications, and premium digital experiences.<br/>
-          Founder, developer, and designer passionate about building futuristic solutions.
+          Full-Stack Web &amp; App Developer crafting scalable web applications, secure APIs, and responsive enterprise systems. Experienced in production development at Neoera Infotech and modern UI engineering.
         </p>
         <div class="hero-buttons">
           <a href="#contact" class="btn btn-primary">
@@ -71,7 +61,6 @@
         </div>
       </div>
 
-      <!-- Right: Profile Image -->
       <div class="hero-image-wrap" data-parallax="-0.05">
         <div class="hero-image-frame floating">
           <div class="hero-image-glow"></div>
@@ -83,7 +72,6 @@
       </div>
     </div>
 
-    <!-- Scroll Indicator -->
     <div class="scroll-indicator">
       <div class="scroll-mouse">
         <div class="scroll-wheel"></div>
@@ -92,19 +80,16 @@
     </div>
   </section>
 
-  <!-- =========================================================
-       ABOUT ME + ACHIEVEMENTS SECTION
-  ========================================================= -->
+  <!-- ABOUT ME SECTION -->
   <section class="section reveal-section" id="about">
     <div class="section-inner glass-card">
       <div class="two-col">
 
-        <!-- Left: Image Slider -->
         <div class="about-slider-wrap">
           <div class="about-slider" id="aboutSlider">
-            <img src="about1.jpeg" alt="About 1" class="slider-img active" />
-            <img src="about2.jpeg" alt="About 2" class="slider-img" />
-            <img src="about3.jpeg" alt="About 3" class="slider-img" />
+            <img src="about1.jpeg" alt="Saran Kumar R presentation" class="slider-img active" />
+            <img src="about2.jpeg" alt="Saran Kumar R coding" class="slider-img" />
+            <img src="about3.jpeg" alt="Saran Kumar R workspace" class="slider-img" />
           </div>
           <div class="slider-dots" id="sliderDots">
             <span class="dot active"></span>
@@ -113,12 +98,11 @@
           </div>
         </div>
 
-        <!-- Right: About Content -->
         <div class="about-content">
           <div class="section-tag">Who I Am</div>
           <h2 class="section-title glowing-text">ABOUT ME</h2>
           <p class="about-para">
-            I'm <strong>Saran Kumar R</strong>, a passionate full-stack developer, app developer, and UI/UX designer based in Tamil Nadu. I specialise in crafting high-performance digital products — from responsive websites to intelligent mobile applications. As the founder of <strong>ChillBros</strong>, I lead a team building futuristic digital solutions for real-world clients. My mission is to blend elegant design with powerful engineering to create experiences that leave a lasting impression.
+            I'm <strong>Saran Kumar R</strong>, a full-stack software developer and application builder based in Tamil Nadu. Currently contributing as a Software Developer Intern at <strong>Neoera Infotech</strong>, delivering production-ready commercial platforms ranging from studio management solutions to high-volume billing portals. I blend robust backend logic, secure authentication, and sleek interactive frontends into maintainable architectures.
           </p>
 
           <div class="achievements-grid">
@@ -171,61 +155,50 @@
     </div>
   </section>
 
-  <!-- =========================================================
-       TOOLS + LANGUAGES SECTION
-  ========================================================= -->
+  <!-- TOOLS & LANGUAGES SECTION -->
   <section class="section reveal-section" id="skills">
     <div class="section-inner glass-card">
       <div class="two-col">
 
         <!-- Left: Tools Known -->
         <div class="skills-col">
-          <div class="section-tag">Toolkit</div>
+          <div class="section-tag">Toolkit &amp; Tech</div>
           <h2 class="section-title glowing-text">TOOLS KNOWN</h2>
 
           <div class="skills-group">
-            <p class="skills-group-label">Frontend &amp; Dev Tools</p>
+            <p class="skills-group-label">Core Development &amp; Versioning</p>
             <div class="tool-grid">
               <div class="tool-card reveal-card"><i class="fas fa-code"></i><span>VS Code</span></div>
               <div class="tool-card reveal-card"><i class="fab fa-git-alt"></i><span>Git</span></div>
               <div class="tool-card reveal-card"><i class="fab fa-github"></i><span>GitHub</span></div>
-              <div class="tool-card reveal-card"><i class="fab fa-docker"></i><span>Docker</span></div>
             </div>
           </div>
 
           <div class="skills-group">
-            <p class="skills-group-label">Testing Tools</p>
+            <p class="skills-group-label">Architecture &amp; Security</p>
             <div class="tool-grid">
-              <div class="tool-card reveal-card"><i class="fas fa-paper-plane"></i><span>Postman</span></div>
-              <div class="tool-card reveal-card"><i class="fas fa-satellite-dish"></i><span>Insomnia</span></div>
+              <div class="tool-card reveal-card"><i class="fas fa-network-wired"></i><span>REST APIs</span></div>
+              <div class="tool-card reveal-card"><i class="fas fa-shield-alt"></i><span>JWT Auth</span></div>
+              <div class="tool-card reveal-card"><i class="fas fa-plug"></i><span>API Integration</span></div>
             </div>
           </div>
 
           <div class="skills-group">
-            <p class="skills-group-label">Database Tools</p>
+            <p class="skills-group-label">Databases &amp; Mobile</p>
             <div class="tool-grid">
-              <div class="tool-card reveal-card"><i class="fas fa-database"></i><span>PostgreSQL</span></div>
-              <div class="tool-card reveal-card"><i class="fas fa-leaf"></i><span>MongoDB</span></div>
-              <div class="tool-card reveal-card"><i class="fas fa-table"></i><span>DBeaver</span></div>
-            </div>
-          </div>
-
-          <div class="skills-group">
-            <p class="skills-group-label">App Development</p>
-            <div class="tool-grid">
-              <div class="tool-card reveal-card"><i class="fab fa-android"></i><span>Android Studio</span></div>
-              <div class="tool-card reveal-card"><i class="fas fa-terminal"></i><span>Cursor</span></div>
+              <div class="tool-card reveal-card"><i class="fas fa-database"></i><span>MySQL</span></div>
+              <div class="tool-card reveal-card"><i class="fas fa-mobile-screen"></i><span>Flutter</span></div>
             </div>
           </div>
         </div>
 
-        <!-- Right: Languages Known -->
+        <!-- Right: Languages Known & Stack -->
         <div class="skills-col">
-          <div class="section-tag">Languages</div>
-          <h2 class="section-title glowing-text">LANGUAGES KNOWN</h2>
+          <div class="section-tag">Proficiency</div>
+          <h2 class="section-title glowing-text">LANGUAGES &amp; STACK</h2>
 
           <div class="skills-group">
-            <p class="skills-group-label">Frontend</p>
+            <p class="skills-group-label">Frontend &amp; Frameworks</p>
             <div class="lang-list">
               <div class="lang-item reveal-card">
                 <div class="lang-label"><i class="fab fa-html5"></i> HTML</div>
@@ -237,51 +210,25 @@
               </div>
               <div class="lang-item reveal-card">
                 <div class="lang-label"><i class="fab fa-js-square"></i> JavaScript</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="88"></div></div>
+              </div>
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fab fa-react"></i> React</div>
                 <div class="lang-bar"><div class="lang-fill" data-pct="85"></div></div>
               </div>
             </div>
           </div>
 
           <div class="skills-group">
-            <p class="skills-group-label">Backend</p>
+            <p class="skills-group-label">Backend &amp; Database</p>
             <div class="lang-list">
               <div class="lang-item reveal-card">
                 <div class="lang-label"><i class="fab fa-node-js"></i> Node.js</div>
+                <div class="lang-bar"><div class="lang-fill" data-pct="82"></div></div>
+              </div>
+              <div class="lang-item reveal-card">
+                <div class="lang-label"><i class="fas fa-database"></i> SQL (MySQL)</div>
                 <div class="lang-bar"><div class="lang-fill" data-pct="80"></div></div>
-              </div>
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fab fa-python"></i> Python</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="75"></div></div>
-              </div>
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fab fa-java"></i> Java</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="70"></div></div>
-              </div>
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fab fa-php"></i> PHP</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="65"></div></div>
-              </div>
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fas fa-gem"></i> Ruby</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="55"></div></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="skills-group">
-            <p class="skills-group-label">Database</p>
-            <div class="lang-list">
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fas fa-leaf"></i> MongoDB</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="80"></div></div>
-              </div>
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fas fa-database"></i> MySQL</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="78"></div></div>
-              </div>
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fas fa-database"></i> PostgreSQL</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="72"></div></div>
               </div>
             </div>
           </div>
@@ -291,34 +238,133 @@
     </div>
   </section>
 
-  <!-- =========================================================
-       PROJECTS / STARTUP SECTION
-  ========================================================= -->
+  <!-- ALL PROJECTS IN ONE UNIFIED SECTION -->
   <section class="section reveal-section" id="projects">
     <div class="section-inner glass-card">
-      <div class="section-tag center-tag">Our Startup</div>
-      <h2 class="section-title glowing-text center-title">CHILLBROS STARTUP PROJECTS</h2>
+      <div class="section-tag center-tag">Featured Work</div>
+      <h2 class="section-title glowing-text center-title">PROJECTS &amp; SYSTEMS</h2>
       <p class="startup-tagline">
-        <span class="accent-glow">CHILLBROS</span> — Building the future, one product at a time.
+        Enterprise solutions, client platforms developed at <span class="accent-glow">Neoera Infotech</span>, and cybersecurity utilities.
       </p>
 
       <div class="projects-grid">
 
-        <!-- Project 1: PV Academy -->
+        <!-- Project 1: Savithiri Studios -->
+        <div class="project-card reveal-card">
+          <div class="project-img-wrap">
+            <img src="pvacademy.png" alt="Savithiri Studios Platform" />
+            <div class="project-overlay">
+              <i class="fas fa-camera-retro"></i>
+              <span>Studio Portal</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <span class="project-badge">Neoera Infotech</span>
+            <h3>SAVITHIRI STUDIOS</h3>
+            <p class="project-sub">Photography Studio House &bull; Coimbatore</p>
+            <p class="project-desc">Engineered client booking flows, showcase galleries, and structured service pipelines for one of Coimbatore's leading creative photography houses.</p>
+            <div class="project-tags">
+              <span>React</span><span>Node.js</span><span>REST APIs</span><span>MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Rupnidhi Billing Software -->
+        <div class="project-card reveal-card">
+          <div class="project-img-wrap">
+            <img src="pvacademy.png" alt="Rupnidhi Billing Software Dashboard" />
+            <div class="project-overlay">
+              <i class="fas fa-file-invoice-dollar"></i>
+              <span>Billing Engine</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <span class="project-badge">Neoera Infotech</span>
+            <h3>RUPNIDHI BILLING SOFTWARE</h3>
+            <p class="project-sub">Commercial Invoicing &amp; Inventory System</p>
+            <p class="project-desc">Implemented high-reliability transaction tracking, automated invoice generation, tax computation, and synchronized backend accounting ledgers.</p>
+            <div class="project-tags">
+              <span>Node.js</span><span>MySQL</span><span>JWT Auth</span><span>Express</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Dhaswa Billing Software -->
+        <div class="project-card reveal-card">
+          <div class="project-img-wrap">
+            <img src="pvacademy.png" alt="Dhaswa Billing POS Solution" />
+            <div class="project-overlay">
+              <i class="fas fa-receipt"></i>
+              <span>POS &amp; Accounting</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <span class="project-badge">Neoera Infotech</span>
+            <h3>DHASWA BILLING SOFTWARE</h3>
+            <p class="project-sub">Enterprise Retail Billing Solution</p>
+            <p class="project-desc">Designed performant point-of-sale inventory tables, daily transaction summaries, and role-based permissions with integrated verification workflows.</p>
+            <div class="project-tags">
+              <span>React</span><span>SQL</span><span>API Integration</span><span>JWT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Swarnalagna Matrimony -->
+        <div class="project-card reveal-card">
+          <div class="project-img-wrap">
+            <img src="pvacademy.png" alt="Swarnalagna Matrimony Portal" />
+            <div class="project-overlay">
+              <i class="fas fa-ring"></i>
+              <span>Matrimonial Platform</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <span class="project-badge">Neoera Infotech</span>
+            <h3>SWARNALAGNA MATRIMONY</h3>
+            <p class="project-sub">Community Matchmaking &bull; Iyer Matrimony</p>
+            <p class="project-desc">Built candidate profile matchmaking, protected profile access controls, verification systems, and preference-based search algorithms.</p>
+            <div class="project-tags">
+              <span>Full-Stack</span><span>MySQL</span><span>Authentication</span><span>REST APIs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5: Anti-Keylogger System -->
+        <div class="project-card reveal-card">
+          <div class="project-img-wrap">
+            <img src="pvacademy.png" alt="Anti Keylogger Defensive Software" />
+            <div class="project-overlay">
+              <i class="fas fa-user-shield"></i>
+              <span>Defensive Security</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <span class="project-badge independent">Own Project</span>
+            <h3>ANTI-KEYLOGGER SYSTEM</h3>
+            <p class="project-sub">Cybersecurity &amp; Real-Time Anomaly Detection</p>
+            <p class="project-desc">A defensive security utility detecting malicious low-level keystroke hooks, unauthorized process interception, and background process injection to protect credentials.</p>
+            <div class="project-tags">
+              <span>Cybersecurity</span><span>Process Monitor</span><span>Anomaly Detection</span><span>Security</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6: PV Academy -->
         <a href="https://pvacademy.co.in" target="_blank" class="project-card reveal-card" rel="noopener">
           <div class="project-img-wrap">
             <img src="pvacademy.png" alt="PV Academy Tuition Centre Website" />
             <div class="project-overlay">
               <i class="fas fa-external-link-alt"></i>
-              <span>Visit Project</span>
+              <span>Visit Live</span>
             </div>
           </div>
           <div class="project-info">
+            <span class="project-badge independent">Own Project</span>
             <h3>PV ACADEMY</h3>
-            <p class="project-sub">Tuition Centre Website</p>
-            <p class="project-desc">A modern education platform for a tuition centre with course listings, faculty introductions, student testimonials, and online enquiry — designed for trust and clarity.</p>
+            <p class="project-sub">Tuition Centre Education Platform</p>
+            <p class="project-desc">A modern education platform with course listings, faculty introductions, student testimonials, and online enquiry — designed for trust and clarity.</p>
             <div class="project-tags">
-              <span>HTML</span><span>CSS</span><span>Node.js</span>
+              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span>
             </div>
           </div>
         </a>
@@ -327,17 +373,13 @@
     </div>
   </section>
 
-  <!-- =========================================================
-       EDUCATION SECTION
-  ========================================================= -->
+  <!-- EDUCATION SECTION -->
   <section class="section reveal-section" id="education">
     <div class="section-inner glass-card">
       <div class="section-tag center-tag">My Journey</div>
       <h2 class="section-title glowing-text center-title">EDUCATION</h2>
 
       <div class="timeline">
-
-        <!-- Row 1 -->
         <div class="timeline-row reveal-card">
           <div class="timeline-text left-text">
             <div class="edu-badge"><i class="fas fa-school"></i> 10th Standard</div>
@@ -348,14 +390,11 @@
             <div class="timeline-line"></div>
             <div class="timeline-dot"></div>
           </div>
-          <div class="timeline-image right-image">
-          </div>
+          <div class="timeline-image right-image"></div>
         </div>
 
-        <!-- Row 2 -->
         <div class="timeline-row reveal-card">
-          <div class="timeline-image left-image">
-          </div>
+          <div class="timeline-image left-image"></div>
           <div class="timeline-dot-wrap">
             <div class="timeline-line"></div>
             <div class="timeline-dot"></div>
@@ -363,25 +402,20 @@
           <div class="timeline-text right-text">
             <div class="edu-badge"><i class="fas fa-graduation-cap"></i> 12th Standard</div>
             <h3>St. Thomas Matriculation Higher Secondary School, Thoothukudi</h3>
-            <p>Completed Higher Secondary Certificate (HSC) focusing on Computer Science, Mathematics, and Physics — sparking my passion for programming and technology.</p>
+            <p>Completed Higher Secondary Certificate (HSC) focusing on Computer Science, Mathematics, and Physics — establishing fundamentals in programming and algorithms.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- =========================================================
-       CONTACT SECTION
-  ========================================================= -->
+  <!-- CONTACT SECTION -->
   <section class="section reveal-section" id="contact">
     <div class="section-inner glass-card">
       <div class="section-tag center-tag">Let's Connect</div>
       <h2 class="section-title glowing-text center-title">CONTACT ME</h2>
 
       <div class="two-col contact-cols">
-
-        <!-- Left: Social Icons -->
         <div class="contact-social">
           <p class="social-intro">Reach out through any platform. I respond within 24 hours.</p>
           <div class="social-links">
@@ -396,7 +430,7 @@
               <i class="fab fa-instagram"></i>
               <div>
                 <strong>Instagram</strong>
-                <span>Follow my creative journey</span>
+                <span>Follow my updates</span>
               </div>
             </a>
             <a href="https://www.linkedin.com/in/saran-kumar-r" target="_blank" class="social-link linkedin" rel="noopener">
@@ -416,9 +450,8 @@
           </div>
         </div>
 
-        <!-- Right: Enquiry Form -->
         <div class="contact-form-wrap">
-          <p class="form-intro">Send me a project enquiry or service request.</p>
+          <p class="form-intro">Send me a project enquiry or technical collaboration proposal.</p>
           <div id="formMsg" class="form-msg"></div>
           <div class="contact-form" id="contactForm">
             <div class="form-group">
@@ -437,10 +470,10 @@
               <label>Service Needed</label>
               <select name="service">
                 <option value="">— Select a Service —</option>
-                <option>Web Development</option>
-                <option>App Development</option>
-                <option>UI/UX Design</option>
-                <option>Full-Stack Solution</option>
+                <option>Full-Stack Web Development</option>
+                <option>API &amp; Backend Engineering</option>
+                <option>Billing &amp; Inventory Software</option>
+                <option>Mobile App (Flutter)</option>
                 <option>Other</option>
               </select>
             </div>
@@ -453,17 +486,14 @@
             </button>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- =========================================================
-       FOOTER
-  ========================================================= -->
+  <!-- FOOTER -->
   <footer class="footer">
     <p>Designed &amp; Developed by <span class="accent-glow">Saran Kumar R</span> &copy; 2026</p>
-    <p class="footer-sub">ChillBros — Building the Future</p>
+    <p class="footer-sub">Full Stack Engineer &bull; Neoera Infotech</p>
   </footer>
 
   <script src="script.js"></script>
