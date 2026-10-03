@@ -2,9 +2,7 @@
    SARAN KUMAR R — Portfolio JavaScript
 ========================================================= */
 
-/* =========================================================
-   EMAILJS INITIALIZATION
-========================================================= */
+// EmailJS Initialization
 const EMAILJS_SERVICE_ID  = 'service_w6pq20a';
 const EMAILJS_TEMPLATE_ID = 'template_6q8waaf';
 const EMAILJS_PUBLIC_KEY  = '7iEQulO84r4XvsmRX';
@@ -16,9 +14,9 @@ const EMAILJS_PUBLIC_KEY  = '7iEQulO84r4XvsmRX';
 })();
 
 /* =========================================================
-   1. CUSTOM CURSOR TRACKING (Pointer devices only)
+   1. CUSTOM CURSOR FOLLOWER
 ========================================================= */
-const cursorDot     = document.querySelector('.cursor-dot');
+const cursorDot = document.querySelector('.cursor-dot');
 const cursorOutline = document.querySelector('.cursor-outline');
 let mouseX = 0, mouseY = 0;
 let outlineX = 0, outlineY = 0;
@@ -27,21 +25,21 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && cursorDot
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    cursorDot.style.left = mouseX + 'px';
-    cursorDot.style.top  = mouseY + 'px';
+    cursorDot.style.left = `${mouseX}px`;
+    cursorDot.style.top = `${mouseY}px`;
   });
 
   function animateCursor() {
-    const speed = 0.14;
-    outlineX += (mouseX - outlineX) * speed;
-    outlineY += (mouseY - outlineY) * speed;
-    cursorOutline.style.left = outlineX + 'px';
-    cursorOutline.style.top  = outlineY + 'px';
+    const ease = 0.16;
+    outlineX += (mouseX - outlineX) * ease;
+    outlineY += (mouseY - outlineY) * ease;
+    cursorOutline.style.left = `${outlineX}px`;
+    cursorOutline.style.top = `${outlineY}px`;
     requestAnimationFrame(animateCursor);
   }
   animateCursor();
 
-  document.querySelectorAll('a, button, .tool-card, .project-card, .achievement-card, input, select, textarea').forEach(el => {
+  document.querySelectorAll('a, button, input, select, textarea, .project-glass-card, .skill-chip, .contact-card-glass').forEach(el => {
     el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovered'));
     el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovered'));
   });
@@ -51,123 +49,92 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && cursorDot
    2. FLOATING CANVAS PARTICLES
 ========================================================= */
 const canvas = document.getElementById('particleCanvas');
-const ctx    = canvas.getContext('2d');
-let particles = [];
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  let particles = [];
 
-function resizeCanvas() {
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
-class Particle {
-  constructor() { this.reset(); }
-  reset() {
-    this.x     = Math.random() * canvas.width;
-    this.y     = Math.random() * canvas.height;
-    this.vx    = (Math.random() - 0.5) * 0.3;
-    this.vy    = (Math.random() - 0.5) * 0.3 - 0.1;
-    this.size  = Math.random() * 1.8 + 0.4;
-    this.alpha = Math.random() * 0.5 + 0.1;
-    this.color = Math.random() > 0.5
-      ? `rgba(0, 212, 255, ${this.alpha})`
-      : `rgba(168, 85, 247, ${this.alpha})`;
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
   }
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
-    if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) this.reset();
-  }
-  draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = this.color;
-    ctx.shadowBlur  = 6;
-    ctx.shadowColor = this.color;
-    ctx.fill();
-  }
-}
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
 
-// Particle count scaled to screen size
-const particleCount = window.innerWidth < 768 ? 45 : 100;
-for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-
-function animateParticles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const maxDistance = window.innerWidth < 768 ? 70 : 100;
-
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx   = particles[i].x - particles[j].x;
-      const dy   = particles[i].y - particles[j].y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < maxDistance) {
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.strokeStyle = `rgba(0, 212, 255, ${0.06 * (1 - dist / maxDistance)})`;
-        ctx.lineWidth   = 0.5;
-        ctx.stroke();
-      }
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.25;
+      this.vy = (Math.random() - 0.5) * 0.25 - 0.05;
+      this.size = Math.random() * 1.6 + 0.4;
+      this.alpha = Math.random() * 0.4 + 0.1;
+      this.color = Math.random() > 0.5 
+        ? `rgba(0, 242, 254, ${this.alpha})`
+        : `rgba(157, 78, 221, ${this.alpha})`;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = this.color;
+      ctx.fill();
     }
   }
-  particles.forEach(p => { p.update(); p.draw(); });
-  requestAnimationFrame(animateParticles);
-}
-animateParticles();
 
-/* =========================================================
-   3. HIGH-PRECISION SMOOTH SCROLL WITH OFFSET
-========================================================= */
-function getNavbarHeight() {
-  const navbar = document.getElementById('navbar');
-  return navbar ? navbar.offsetHeight : 70;
-}
+  const count = window.innerWidth < 768 ? 40 : 85;
+  for (let i = 0; i < count; i++) particles.push(new Particle());
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const targetId = this.getAttribute('href');
-    if (targetId === '#') return;
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const maxDist = window.innerWidth < 768 ? 70 : 100;
 
-    const targetElement = document.querySelector(targetId);
-    if (targetElement) {
-      e.preventDefault();
-
-      // Close mobile menu if active
-      if (hamburger.classList.contains('open')) {
-        hamburger.classList.remove('open');
-        navLinksList.classList.remove('open');
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < maxDist) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0, 242, 254, ${0.05 * (1 - dist / maxDist)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
       }
-
-      const offset = getNavbarHeight() + 12;
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
     }
-  });
-});
+
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+}
 
 /* =========================================================
-   4. NAVBAR SCROLL STATE & ACTIVE LINK MONITOR
+   3. NAVBAR SCROLL & SMOOTH ANCHOR OFFSET
 ========================================================= */
-const navbar   = document.getElementById('navbar');
-const sections = document.querySelectorAll('section[id]');
+const navbar = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navLinksList = document.getElementById('navLinks');
 const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('section[id]');
 
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 40) navbar.classList.add('scrolled');
-  else navbar.classList.remove('scrolled');
+  if (navbar) {
+    if (window.scrollY > 40) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  }
 
   let current = '';
-  const currentNavHeight = getNavbarHeight();
-
   sections.forEach(sec => {
-    const top = sec.offsetTop - currentNavHeight - 80;
+    const top = sec.offsetTop - 120;
     const height = sec.offsetHeight;
     if (window.scrollY >= top && window.scrollY < top + height) {
       current = sec.getAttribute('id');
@@ -176,218 +143,147 @@ window.addEventListener('scroll', () => {
 
   navLinks.forEach(link => {
     link.classList.remove('active');
-    if (link.getAttribute('href') === '#' + current) {
+    if (link.getAttribute('href') === `#${current}`) {
       link.classList.add('active');
     }
   });
 });
 
-/* =========================================================
-   5. MOBILE HAMBURGER MENU
-========================================================= */
-const hamburger = document.getElementById('hamburger');
-const navLinksList = document.getElementById('navLinks');
+if (hamburger && navLinksList) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinksList.classList.toggle('open');
+  });
 
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('open');
-  navLinksList.classList.toggle('open');
-});
-
-// Dismiss navigation on external click
-document.addEventListener('click', (e) => {
-  if (!navbar.contains(e.target) && navLinksList.classList.contains('open')) {
-    hamburger.classList.remove('open');
-    navLinksList.classList.remove('open');
-  }
-});
-
-/* =========================================================
-   6. HERO DYNAMIC ROLE TEXT ROTATION
-========================================================= */
-const roles = [
-  'Full Stack Developer',
-  'Software Developer Intern',
-  'React & Node Specialist',
-  'REST API Engineer'
-];
-const roleEl = document.getElementById('heroRole');
-let roleIndex = 0;
-
-function changeRole() {
-  if (!roleEl) return;
-  roleEl.style.opacity = '0';
-  roleEl.style.transform = 'translateY(10px)';
-  roleEl.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-
-  setTimeout(() => {
-    roleIndex = (roleIndex + 1) % roles.length;
-    roleEl.textContent = roles[roleIndex];
-    roleEl.style.opacity = '1';
-    roleEl.style.transform = 'translateY(0)';
-  }, 420);
-}
-
-setInterval(changeRole, 2500);
-
-/* =========================================================
-   7. HERO PARALLAX MOUSE EFFECT (Desktop only)
-========================================================= */
-const heroSection = document.getElementById('hero');
-const parallaxItems = heroSection ? heroSection.querySelectorAll('[data-parallax]') : [];
-
-if (window.innerWidth > 1024) {
-  document.addEventListener('mousemove', (e) => {
-    const cx = window.innerWidth / 2;
-    const cy = window.innerHeight / 2;
-    const dx = (e.clientX - cx) / cx;
-    const dy = (e.clientY - cy) / cy;
-
-    parallaxItems.forEach(item => {
-      const factor = parseFloat(item.getAttribute('data-parallax'));
-      const mx = dx * factor * 50;
-      const my = dy * factor * 35;
-      item.style.transform = `translate(${mx}px, ${my}px)`;
-      item.style.transition = 'transform 0.15s ease-out';
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinksList.classList.remove('open');
     });
   });
 }
 
 /* =========================================================
-   8. ABOUT IMAGE SLIDER
+   4. DYNAMIC HERO ROLE TICKER
 ========================================================= */
-const sliderImgs = document.querySelectorAll('.slider-img');
-const sliderDots = document.querySelectorAll('.dot');
-let sliderIndex  = 0;
+const tickerRoles = [
+  'Full Stack Developer',
+  'React.js & Node.js Engineer',
+  'REST APIs & System Architect',
+  'MySQL & MongoDB Specialist',
+  'JWT & Cybersecurity Builder',
+  'Flutter Mobile App Developer',
+  'AI-Assisted Development Engineer'
+];
+const tickerEl = document.getElementById('heroRole');
+let tickerIdx = 0;
 
-function goToSlide(index) {
-  if (!sliderImgs.length) return;
-  sliderImgs[sliderIndex].classList.remove('active');
-  sliderDots[sliderIndex].classList.remove('active');
-  sliderIndex = index % sliderImgs.length;
-  sliderImgs[sliderIndex].classList.add('active');
-  sliderDots[sliderIndex].classList.add('active');
+if (tickerEl) {
+  setInterval(() => {
+    tickerEl.style.opacity = '0';
+    setTimeout(() => {
+      tickerIdx = (tickerIdx + 1) % tickerRoles.length;
+      tickerEl.textContent = tickerRoles[tickerIdx];
+      tickerEl.style.opacity = '1';
+    }, 300);
+  }, 2800);
 }
 
-let sliderTimer = setInterval(() => goToSlide(sliderIndex + 1), 2400);
-
-sliderDots.forEach((dot, i) => {
-  dot.addEventListener('click', () => {
-    clearInterval(sliderTimer);
-    goToSlide(i);
-    sliderTimer = setInterval(() => goToSlide(sliderIndex + 1), 2400);
-  });
-});
-
 /* =========================================================
-   9. INTERSECTION OBSERVERS (Scroll reveals & Progress bars)
+   5. EXTENDED 6-IMAGE GALLERY SLIDER
 ========================================================= */
-const revealSections = document.querySelectorAll('.reveal-section');
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      sectionObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.08 });
-revealSections.forEach(sec => sectionObserver.observe(sec));
+const sliderImages = document.querySelectorAll('.slider-img');
+const sliderDots = document.querySelectorAll('.dot');
+const prevBtn = document.getElementById('sliderPrev');
+const nextBtn = document.getElementById('sliderNext');
+let currentSlide = 0;
+let slideInterval;
 
-const revealCards = document.querySelectorAll('.reveal-card');
-const cardObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      const siblings = entry.target.parentElement.querySelectorAll('.reveal-card');
-      let delay = 0;
-      siblings.forEach((sib, i) => { if (sib === entry.target) delay = (i % 3) * 80; });
+function updateSlide(idx) {
+  if (!sliderImages.length) return;
+  sliderImages[currentSlide].classList.remove('active');
+  if (sliderDots[currentSlide]) sliderDots[currentSlide].classList.remove('active');
 
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, delay);
-      cardObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-revealCards.forEach(card => cardObserver.observe(card));
+  currentSlide = (idx + sliderImages.length) % sliderImages.length;
 
-const langFills = document.querySelectorAll('.lang-fill');
-const barObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const pct = entry.target.getAttribute('data-pct');
-      entry.target.style.width = pct + '%';
-      barObserver.unobserve(entry.target);
-    }
+  sliderImages[currentSlide].classList.add('active');
+  if (sliderDots[currentSlide]) sliderDots[currentSlide].classList.add('active');
+}
+
+function startSliderTimer() {
+  clearInterval(slideInterval);
+  slideInterval = setInterval(() => {
+    updateSlide(currentSlide + 1);
+  }, 3200);
+}
+
+if (sliderImages.length) {
+  startSliderTimer();
+
+  if (nextBtn) nextBtn.addEventListener('click', () => { updateSlide(currentSlide + 1); startSliderTimer(); });
+  if (prevBtn) prevBtn.addEventListener('click', () => { updateSlide(currentSlide - 1); startSliderTimer(); });
+
+  sliderDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      updateSlide(index);
+      startSliderTimer();
+    });
   });
-}, { threshold: 0.3 });
-langFills.forEach(bar => barObserver.observe(bar));
+}
 
 /* =========================================================
-   10. EMAILJS FORM SUBMISSION
+   6. EMAIL TRANSMISSION HANDLER
 ========================================================= */
 window.sendEmail = function () {
-  const btn    = document.getElementById('submitBtn');
+  const form = document.getElementById('contactForm');
   const msgDiv = document.getElementById('formMsg');
-  const form   = document.getElementById('contactForm');
+  const btn = document.getElementById('submitBtn');
 
-  const fromName = form.querySelector('[name="from_name"]').value.trim();
-  const replyTo  = form.querySelector('[name="reply_to"]').value.trim();
-  const phone    = form.querySelector('[name="phone"]').value.trim();
-  const service  = form.querySelector('[name="service"]').value;
-  const message  = form.querySelector('[name="message"]').value.trim();
+  if (!form || !btn) return;
 
-  if (!fromName || !replyTo || !message) {
-    showMsg('Please fill in your Name, Email, and Message.', 'error');
-    return;
-  }
-  if (!isValidEmail(replyTo)) {
-    showMsg('Please enter a valid email address.', 'error');
+  const name = form.querySelector('[name="from_name"]').value.trim();
+  const email = form.querySelector('[name="reply_to"]').value.trim();
+  const phone = form.querySelector('[name="phone"]').value.trim();
+  const service = form.querySelector('[name="service"]').value;
+  const message = form.querySelector('[name="message"]').value.trim();
+
+  if (!name || !email || !message) {
+    displayNotification('Please fill in your name, email, and message.', 'error');
     return;
   }
 
   btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-  msgDiv.style.display = 'none';
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Transmitting...';
 
   const templateParams = {
-    from_name: fromName,
-    reply_to:  replyTo,
-    phone:     phone || 'Not provided',
-    service:   service || 'Not specified',
-    message:   message
+    from_name: name,
+    reply_to: email,
+    phone: phone || 'Not provided',
+    service: service || 'General Inquiry',
+    message: message
   };
 
   emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
     .then(() => {
-      showMsg('🚀 Message sent successfully! I will get back to you within 24 hours.', 'success');
-      form.querySelectorAll('input, textarea, select').forEach(el => { el.value = ''; });
+      displayNotification('Message sent successfully! I will connect with you soon.', 'success');
+      form.reset();
       btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Transmit Message';
     })
     .catch((err) => {
-      console.error('EmailJS Error:', err);
-      showMsg('Oops! Something went wrong. Please reach out directly.', 'error');
+      console.error('Email error:', err);
+      displayNotification('Could not send message. Please ping directly via WhatsApp or Email.', 'error');
       btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Transmit Message';
     });
 };
 
-function showMsg(text, type) {
-  const msgDiv = document.getElementById('formMsg');
-  msgDiv.textContent = text;
-  msgDiv.className = 'form-msg ' + type;
+function displayNotification(text, type) {
+  const msg = document.getElementById('formMsg');
+  if (!msg) return;
+  msg.textContent = text;
+  msg.className = `form-notification ${type}`;
+  setTimeout(() => {
+    msg.style.display = 'none';
+  }, 6000);
 }
-
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-/* =========================================================
-   11. HERO INITIAL MOUNT ENTRANCE
-========================================================= */
-window.addEventListener('load', () => {
-  const heroText = document.querySelector('.hero-text');
-  const heroImg  = document.querySelector('.hero-image-wrap');
-
-  if (heroText) heroText.style.animation = 'fadeInUp 0.9s ease 0.2s both';
-  if (heroImg)  heroImg.style.animation  = 'fadeInUp 0.9s ease 0.45s both';
-});

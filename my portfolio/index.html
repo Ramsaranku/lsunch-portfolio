@@ -3,149 +3,250 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>Saran Kumar R — Portfolio</title>
+  <title>Saran Kumar R — Full-Stack Engineer &amp; Security Innovator</title>
   <link rel="stylesheet" href="style.css" />
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/jpeg" href="saran.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <!-- EmailJS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <style>
+    /* Enforce 9:16 Aspect Ratio on About Me Slider */
+    .about-gallery-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .glass-slider-frame {
+      position: relative;
+      width: 100%;
+      max-width: 340px;
+      aspect-ratio: 9 / 16;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .slider-track {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slider-track .slider-img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      object-position: center;
+      display: none;
+    }
+
+    .slider-track .slider-img.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- CUSTOM CURSOR (Active on fine pointer devices) -->
+  <!-- AMBIENT GLASSMORPHIC ORBS -->
+  <div class="ambient-glow orb-1"></div>
+  <div class="ambient-glow orb-2"></div>
+  <div class="ambient-glow orb-3"></div>
+
+  <!-- CUSTOM CURSOR -->
   <div class="cursor-dot"></div>
   <div class="cursor-outline"></div>
 
-  <!-- FLOATING PARTICLES CANVAS -->
+  <!-- PARTICLES CANVAS -->
   <canvas id="particleCanvas"></canvas>
 
-  <!-- NAVIGATION BAR -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-logo">SK<span class="accent">.</span></div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#hero" class="nav-link active">Home</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#skills" class="nav-link">Skills</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
-      <li><a href="#education" class="nav-link">Education</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+  <!-- NAVIGATION -->
+  <header class="navbar-wrapper">
+    <nav class="navbar glass-nav" id="navbar">
+      <a href="#hero" class="nav-logo">
+        <div class="logo-avatar-wrap">
+          <img src="logo.jpeg" alt="Saran Kumar R Logo" class="nav-logo-img" />
+          <div class="logo-glow-ring"></div>
+        </div>
+        <span class="logo-text">SK<span class="accent-dot">.</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="https://github.com/Ramsaranku" target="_blank" class="nav-icon-link" aria-label="GitHub Profile" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/saran-kumar-r" target="_blank" class="nav-icon-link" aria-label="LinkedIn Profile" rel="noopener">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
 
   <!-- HERO SECTION -->
   <section class="section" id="hero">
     <div class="hero-inner">
-      <div class="hero-text" data-parallax="0.03">
-        <p class="hero-greeting">Hello, I'm</p>
-        <h1 class="hero-name glowing-text">SARAN<br/>KUMAR R</h1>
-        <div class="hero-role-wrap">
-          <span class="role-prefix">I'm a </span>
-          <span class="hero-role" id="heroRole">Full Stack Developer</span>
+      <div class="hero-text">
+        <div class="status-pill glass-pill">
+          <span class="pulse-status"></span> Available for Development of Website &amp; Mobile App Development ...
+        </div>
+        <h1 class="hero-title">
+          Hi, I'm <span class="gradient-text">SARAN KUMAR R</span>
+        </h1>
+        <div class="hero-roles">
+          <span class="role-static">Specialized in: </span>
+          <span class="hero-role-ticker" id="heroRole">Full Stack Developer</span>
           <span class="cursor-blink">|</span>
         </div>
         <p class="hero-bio">
-          Full-Stack Web &amp; App Developer crafting scalable web applications, secure APIs, and responsive enterprise systems. Experienced in production development at Neoera Infotech and modern UI engineering.
+          Full-Stack Developer crafting responsive web apps and cross-platform mobile experiences with React.js, Node.js, and Flutter. Focused on architecting secure REST APIs, robust MySQL databases, and modern UI systems powered by AI-accelerated workflows.
         </p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">
-            <i class="fas fa-envelope"></i> Hire Me
+        
+        <div class="hero-tech-strip glass-card-sm">
+          <span><i class="fab fa-react"></i> React.js</span>
+          <span><i class="fab fa-node-js"></i> Node.js</span>
+          <span><i class="fas fa-leaf"></i> MongoDB</span>
+          <span><i class="fas fa-database"></i> MySQL</span>
+          <span><i class="fas fa-shield-halved"></i> JWT</span>
+          <span><i class="fas fa-mobile-screen"></i> Flutter</span>
+          <span><i class="fas fa-brain"></i> AI Automation</span>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-glass-primary">
+            <i class="fas fa-layer-group"></i> Explore Projects
           </a>
-          <a href="#projects" class="btn btn-outline">
-            <i class="fas fa-rocket"></i> View Projects
+          <a href="#contact" class="btn btn-glass-secondary">
+            <i class="fas fa-paper-plane"></i> Get in Touch
           </a>
         </div>
       </div>
 
-      <div class="hero-image-wrap" data-parallax="-0.05">
-        <div class="hero-image-frame floating">
-          <div class="hero-image-glow"></div>
-          <img src="sk.jpeg" alt="Saran Kumar R" class="hero-img" />
-          <div class="hero-image-ring ring1"></div>
-          <div class="hero-image-ring ring2"></div>
-          <div class="hero-image-ring ring3"></div>
+      <div class="hero-visual">
+        <div class="avatar-glass-card">
+          <div class="avatar-ring-glow"></div>
+          <div class="avatar-frame">
+            <img src="sk.jpeg" alt="Saran Kumar R" class="hero-img" />
+          </div>
+          <div class="floating-badge badge-1 glass-card-sm">
+            <i class="fas fa-code-commit text-cyan"></i>
+            <div>
+              <strong>Security Minded</strong>
+              <small>AI Anomaly Guard</small>
+            </div>
+          </div>
+          <div class="floating-badge badge-2 glass-card-sm">
+            <i class="fas fa-shield-virus text-purple"></i>
+            <div>
+              <strong>Web &amp; Mobile</strong>
+              <small>Development</small>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="scroll-indicator">
-      <div class="scroll-mouse">
-        <div class="scroll-wheel"></div>
-      </div>
-      <p>Scroll Down</p>
     </div>
   </section>
 
   <!-- ABOUT ME SECTION -->
-  <section class="section reveal-section" id="about">
-    <div class="section-inner glass-card">
-      <div class="two-col">
-
-        <div class="about-slider-wrap">
-          <div class="about-slider" id="aboutSlider">
-            <img src="about1.jpeg" alt="Saran Kumar R presentation" class="slider-img active" />
-            <img src="about2.jpeg" alt="Saran Kumar R coding" class="slider-img" />
-            <img src="about3.jpeg" alt="Saran Kumar R workspace" class="slider-img" />
+  <section class="section" id="about">
+    <div class="section-inner glass-panel">
+      <div class="two-col about-grid">
+        
+        <!-- Image Slider (9:16 Aspect Ratio) -->
+        <div class="about-gallery-wrap">
+          <div class="glass-slider-frame" id="aboutSlider">
+            <div class="slider-track">
+              <img src="about1.jpeg" alt="Presentation &amp; Tech Meetup" class="slider-img active" />
+              <img src="about2.jpeg" alt="Software Engineering Session" class="slider-img" />
+              <img src="about3.jpeg" alt="Deep Work Workspace" class="slider-img" />
+              <img src="saran.jpeg" alt="Hackathon &amp; Innovation" class="slider-img" />
+              <img src="blazersk.jpeg" alt="Project Architecture Session" class="slider-img" />
+            </div>
+            <div class="slider-overlay-control">
+              <button class="slider-nav prev" id="sliderPrev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+              <button class="slider-nav next" id="sliderNext" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+            </div>
           </div>
           <div class="slider-dots" id="sliderDots">
             <span class="dot active"></span>
             <span class="dot"></span>
             <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
           </div>
         </div>
 
-        <div class="about-content">
-          <div class="section-tag">Who I Am</div>
-          <h2 class="section-title glowing-text">ABOUT ME</h2>
-          <p class="about-para">
-            I'm <strong>Saran Kumar R</strong>, a full-stack software developer and application builder based in Tamil Nadu. Currently contributing as a Software Developer Intern at <strong>Neoera Infotech</strong>, delivering production-ready commercial platforms ranging from studio management solutions to high-volume billing portals. I blend robust backend logic, secure authentication, and sleek interactive frontends into maintainable architectures.
+        <div class="about-info">
+          <div class="badge-tag">Profile Overview</div>
+          <h2 class="panel-heading">Passionate Engineer Crafting Resilient Systems</h2>
+          <p class="about-narrative">
+            I am a full-stack engineer, defensive security developer, and startup collaborator based in Tamil Nadu. I bridge the gap between intuitive UI design, high-throughput microservices, and secure process architectures.
+          </p>
+          <p class="about-narrative">
+            Whether architecting scalable billing engines for traditional industries, building custom astrology AI prediction models, or crafting native-feel cross-platform mobile apps in Flutter, I focus on clean code, testability, and measurable speed.
           </p>
 
-          <div class="achievements-grid">
-            <div class="achievement-card reveal-card">
-              <i class="fas fa-trophy"></i>
+          <div class="stats-counter-grid">
+            <div class="stat-pill glass-card-sm">
+              <span class="stat-number">9+</span>
+              <span class="stat-lbl">Real-World Projects</span>
+            </div>
+            <div class="stat-pill glass-card-sm">
+              <span class="stat-number">2+</span>
+              <span class="stat-lbl">Startup Experiences</span>
+            </div>
+            <div class="stat-pill glass-card-sm">
+              <span class="stat-number">6+</span>
+              <span class="stat-lbl">Awards &amp; Hackathons</span>
+            </div>
+          </div>
+
+          <div class="honors-title"><i class="fas fa-award"></i> Key Honors &amp; Recognitions</div>
+          <div class="achievements-cards-grid">
+            <div class="award-card glass-card-sm">
+              <i class="fas fa-trophy text-gold"></i>
               <div>
-                <strong>1st Prize</strong>
-                <span>Paper Presentation — Coimbatore Institute of Technology</span>
+                <strong>1st Prize — Paper Presentation</strong>
+                <span>Coimbatore Institute of Technology (CIT)</span>
               </div>
             </div>
-            <div class="achievement-card reveal-card">
-              <i class="fas fa-trophy"></i>
+            <div class="award-card glass-card-sm">
+              <i class="fas fa-trophy text-gold"></i>
               <div>
-                <strong>1st Prize</strong>
-                <span>Paper Presentation — Sree Sakthi Engineering College</span>
+                <strong>1st Prize — Paper Presentation</strong>
+                <span>Sree Sakthi Engineering College</span>
               </div>
             </div>
-            <div class="achievement-card reveal-card">
-              <i class="fas fa-medal"></i>
+            <div class="award-card glass-card-sm">
+              <i class="fas fa-code text-cyan"></i>
               <div>
-                <strong>2nd Prize</strong>
-                <span>Paper Presentation — Rathinam College</span>
+                <strong>1st Prize — LeetCode Contest</strong>
+                <span>SNS College of Engineering</span>
               </div>
             </div>
-            <div class="achievement-card reveal-card">
-              <i class="fas fa-code"></i>
+            <div class="award-card glass-card-sm">
+              <i class="fas fa-certificate text-purple"></i>
               <div>
-                <strong>1st Prize</strong>
-                <span>LeetCode Competition — SNS College of Engineering</span>
-              </div>
-            </div>
-            <div class="achievement-card reveal-card">
-              <i class="fas fa-bug"></i>
-              <div>
-                <strong>2nd Prize</strong>
-                <span>Code Debugging Competition Winner</span>
-              </div>
-            </div>
-            <div class="achievement-card reveal-card">
-              <i class="fas fa-id-card"></i>
-              <div>
-                <strong>Tamil Nadu</strong>
-                <span>Startup Card Winner</span>
+                <strong>Tamil Nadu Startup Card Winner</strong>
+                <span>Recognized Innovation Pitch</span>
               </div>
             </div>
           </div>
@@ -155,82 +256,121 @@
     </div>
   </section>
 
-  <!-- TOOLS & LANGUAGES SECTION -->
-  <section class="section reveal-section" id="skills">
-    <div class="section-inner glass-card">
-      <div class="two-col">
+  <!-- WORK EXPERIENCE SECTION -->
+  <section class="section" id="experience">
+    <div class="section-inner glass-panel">
+      <div class="badge-tag center-tag">Industry Experience</div>
+      <h2 class="panel-heading center-title">WHERE I'VE WORKED &amp; BUILT</h2>
+      <p class="section-subtext">Hands-on experience delivering commercial software and building startup solutions from 0 to 1.</p>
 
-        <!-- Left: Tools Known -->
-        <div class="skills-col">
-          <div class="section-tag">Toolkit &amp; Tech</div>
-          <h2 class="section-title glowing-text">TOOLS KNOWN</h2>
-
-          <div class="skills-group">
-            <p class="skills-group-label">Core Development &amp; Versioning</p>
-            <div class="tool-grid">
-              <div class="tool-card reveal-card"><i class="fas fa-code"></i><span>VS Code</span></div>
-              <div class="tool-card reveal-card"><i class="fab fa-git-alt"></i><span>Git</span></div>
-              <div class="tool-card reveal-card"><i class="fab fa-github"></i><span>GitHub</span></div>
+      <div class="experience-grid">
+        <!-- Neoera Infotech -->
+        <div class="experience-card glass-card-md">
+          <div class="exp-header">
+            <div class="exp-logo-icon"><i class="fas fa-building-shield"></i></div>
+            <div>
+              <h3>Neoera Infotech</h3>
+              <p class="exp-role">Software Developer Intern <span class="stipend-badge">Stipendiary</span></p>
+              <span class="exp-period"><i class="far fa-calendar-alt"></i> 2026 — Present &bull; Coimbatore</span>
             </div>
           </div>
-
-          <div class="skills-group">
-            <p class="skills-group-label">Architecture &amp; Security</p>
-            <div class="tool-grid">
-              <div class="tool-card reveal-card"><i class="fas fa-network-wired"></i><span>REST APIs</span></div>
-              <div class="tool-card reveal-card"><i class="fas fa-shield-alt"></i><span>JWT Auth</span></div>
-              <div class="tool-card reveal-card"><i class="fas fa-plug"></i><span>API Integration</span></div>
-            </div>
-          </div>
-
-          <div class="skills-group">
-            <p class="skills-group-label">Databases &amp; Mobile</p>
-            <div class="tool-grid">
-              <div class="tool-card reveal-card"><i class="fas fa-database"></i><span>MySQL</span></div>
-              <div class="tool-card reveal-card"><i class="fas fa-mobile-screen"></i><span>Flutter</span></div>
-            </div>
+          <p class="exp-desc">
+            Serving as core full-stack developer intern building and deploying high-stakes client software, enterprise billing ERPs, and specialized web applications.
+          </p>
+          <ul class="exp-highlights">
+            <li>Engineered and optimized commercial billing applications (<strong>Rupnidhi</strong> for temple asset workflows and <strong>Dhaswa</strong> for industrial steel/lathe firms).</li>
+            <li>Created algorithmic AI matching and horoscope chart generation modules for <strong>Swarnalagna Matrimony</strong>.</li>
+            <li>Implemented secure user session architectures using JWT tokens, hashed passwords, and granular role permissions across SQL &amp; Node environments.</li>
+            <li>Developed mobile experiences including <strong>E-Bhojan</strong> and <strong>Sahora Taxi Booking</strong> with Flutter and Android Studio.</li>
+          </ul>
+          <div class="tag-row">
+            <span>React.js</span><span>Node.js</span><span>Express</span><span>MySQL</span><span>Flutter</span><span>JWT</span>
           </div>
         </div>
 
-        <!-- Right: Languages Known & Stack -->
-        <div class="skills-col">
-          <div class="section-tag">Proficiency</div>
-          <h2 class="section-title glowing-text">LANGUAGES &amp; STACK</h2>
-
-          <div class="skills-group">
-            <p class="skills-group-label">Frontend &amp; Frameworks</p>
-            <div class="lang-list">
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fab fa-html5"></i> HTML</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="95"></div></div>
-              </div>
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fab fa-css3-alt"></i> CSS</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="90"></div></div>
-              </div>
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fab fa-js-square"></i> JavaScript</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="88"></div></div>
-              </div>
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fab fa-react"></i> React</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="85"></div></div>
-              </div>
+        <!-- Chill Bros -->
+        <div class="experience-card glass-card-md">
+          <div class="exp-header">
+            <div class="exp-logo-icon chillbros-icon"><i class="fas fa-rocket"></i></div>
+            <div>
+              <h3>Chill Bros</h3>
+              <p class="exp-role">Co-Founder &amp; Lead Web Developer</p>
+              <span class="exp-period"><i class="far fa-calendar-alt"></i> 2024 — Present &bull; Venture Initiative</span>
             </div>
           </div>
+          <p class="exp-desc">
+            A dynamic tech initiative and collaborative startup team established to deliver bespoke web solutions, custom client systems, and agile product experiments.
+          </p>
+          <ul class="exp-highlights">
+            <li>Spearheaded full architectural lifecycle of client platforms including the online portal for <strong>PV Academy</strong>.</li>
+            <li>Managed end-to-end design, frontend performance optimization, DNS configuration, and automated lead management.</li>
+            <li>Collaborated with team developers on defensive cybersecurity concepts, typoglycemia steganography, and internal engineering utilities.</li>
+            <li>Conducted rapid prototyping and user-testing to validate client demands with high conversion rates.</li>
+          </ul>
+          <div class="tag-row">
+            <span>Full-Stack Web</span><span>Client Delivery</span><span>UI/UX</span><span>API Engineering</span><span>Cybersecurity</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <div class="skills-group">
-            <p class="skills-group-label">Backend &amp; Database</p>
-            <div class="lang-list">
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fab fa-node-js"></i> Node.js</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="82"></div></div>
-              </div>
-              <div class="lang-item reveal-card">
-                <div class="lang-label"><i class="fas fa-database"></i> SQL (MySQL)</div>
-                <div class="lang-bar"><div class="lang-fill" data-pct="80"></div></div>
-              </div>
-            </div>
+  <!-- SKILLS & TOOLS SECTION -->
+  <section class="section" id="skills">
+    <div class="section-inner glass-panel">
+      <div class="badge-tag center-tag">Competencies</div>
+      <h2 class="panel-heading center-title">TECHNICAL ECOSYSTEM</h2>
+      <p class="section-subtext">Proficiencies covering languages, backend frameworks, mobile runtimes, and engineering tools.</p>
+
+      <div class="skills-layout-grid">
+        
+        <!-- Programming & Web Languages -->
+        <div class="skill-category glass-card-md">
+          <div class="cat-header">
+            <i class="fas fa-code cat-icon"></i>
+            <h4>Languages &amp; Core Stacks</h4>
+          </div>
+          <div class="skills-pill-grid">
+            <div class="skill-chip"><i class="fab fa-react text-cyan"></i> React.js</div>
+            <div class="skill-chip"><i class="fab fa-node-js text-green"></i> Node.js</div>
+            <div class="skill-chip"><i class="fas fa-server text-light"></i> Express.js</div>
+            <div class="skill-chip"><i class="fab fa-python text-yellow"></i> Python</div>
+            <div class="skill-chip"><i class="fab fa-php text-purple"></i> PHP</div>
+            <div class="skill-chip"><i class="fab fa-js-square text-yellow"></i> JavaScript (ES6+)</div>
+            <div class="skill-chip"><i class="fab fa-html5 text-orange"></i> HTML5</div>
+            <div class="skill-chip"><i class="fab fa-css3-alt text-cyan"></i> CSS3 / PostCSS</div>
+          </div>
+        </div>
+
+        <!-- Databases & Cloud / Auth -->
+        <div class="skill-category glass-card-md">
+          <div class="cat-header">
+            <i class="fas fa-database cat-icon"></i>
+            <h4>Databases &amp; Authentication</h4>
+          </div>
+          <div class="skills-pill-grid">
+            <div class="skill-chip"><i class="fas fa-leaf text-green"></i> MongoDB &amp; Atlas</div>
+            <div class="skill-chip"><i class="fas fa-database text-cyan"></i> MySQL</div>
+            <div class="skill-chip"><i class="fas fa-table-cells text-orange"></i> phpMyAdmin</div>
+            <div class="skill-chip"><i class="fas fa-key text-purple"></i> JWT (JSON Web Tokens)</div>
+            <div class="skill-chip"><i class="fas fa-shield-alt text-cyan"></i> Role-Based Auth (RBAC)</div>
+            <div class="skill-chip"><i class="fas fa-network-wired text-light"></i> RESTful Architecture</div>
+          </div>
+        </div>
+
+        <!-- Mobile & Development Environments -->
+        <div class="skill-category glass-card-md">
+          <div class="cat-header">
+            <i class="fas fa-laptop-code cat-icon"></i>
+            <h4>Mobile &amp; Developer Tools</h4>
+          </div>
+          <div class="skills-pill-grid">
+            <div class="skill-chip"><i class="fas fa-mobile-screen-button text-cyan"></i> Flutter</div>
+            <div class="skill-chip"><i class="fab fa-android text-green"></i> Android Studio</div>
+            <div class="skill-chip"><i class="fas fa-code text-cyan"></i> VS Code</div>
+            <div class="skill-chip"><i class="fab fa-git-alt text-orange"></i> Git Version Control</div>
+            <div class="skill-chip"><i class="fab fa-github text-light"></i> GitHub</div>
+            <div class="skill-chip"><i class="fas fa-robot text-purple"></i> AI-Assisted Development</div>
           </div>
         </div>
 
@@ -238,171 +378,270 @@
     </div>
   </section>
 
-  <!-- ALL PROJECTS IN ONE UNIFIED SECTION -->
-  <section class="section reveal-section" id="projects">
-    <div class="section-inner glass-card">
-      <div class="section-tag center-tag">Featured Work</div>
-      <h2 class="section-title glowing-text center-title">PROJECTS &amp; SYSTEMS</h2>
-      <p class="startup-tagline">
-        Enterprise solutions, client platforms developed at <span class="accent-glow">Neoera Infotech</span>, and cybersecurity utilities.
-      </p>
+  <!-- PROJECTS SECTION (9 DETAILED CARDS) -->
+  <section class="section" id="projects">
+    <div class="section-inner glass-panel">
+      <div class="badge-tag center-tag">Showcase</div>
+      <h2 class="panel-heading center-title">FEATURED PROJECTS &amp; SYSTEMS</h2>
+      <p class="section-subtext">Commercial platforms, custom enterprise systems, and defensive cybersecurity innovations.</p>
 
-      <div class="projects-grid">
+      <div class="projects-master-grid">
 
-        <!-- Project 1: Savithiri Studios -->
-        <a href="https://savithiri.divasprik.in/" target="_blank" class="project-card reveal-card" rel="noopener">
-          <div class="project-img-wrap">
-            <img src="savithiri studios.png" alt="Savithiri Studios Platform" />
-            <div class="project-overlay">
-              <i class="fas fa-external-link-alt"></i>
-              <span>Visit Live</span>
-            </div>
+        <!-- 1. Savithiri Studios -->
+        <div class="project-glass-card">
+          <div class="project-preview">
+            <img src="savithiri studios.png" alt="Savithiri Studios Platform" loading="lazy" />
+            <a href="https://savithiri.divasprik.in/" target="_blank" class="live-action-btn" rel="noopener">
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
-          <div class="project-info">
-            <span class="project-badge">Neoera Infotech</span>
-            <h3>SAVITHIRI STUDIOS</h3>
-            <p class="project-sub">Photography Studio House &bull; Coimbatore</p>
-            <p class="project-desc">Engineered client booking flows, showcase galleries, and structured service pipelines for one of Coimbatore's leading creative photography houses.</p>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="badge-company">Neoera Infotech</span>
+              <span class="badge-type">Client Platform</span>
+            </div>
+            <h3 class="project-title">Savithiri Studios</h3>
+            <p class="project-subtitle">Leading Photography House &bull; Coimbatore</p>
+            <p class="project-info-text">
+              Engineered dynamic photoshoot booking pipelines, portfolio showcase galleries, and studio management workflows for one of Coimbatore's premier creative photography brands.
+            </p>
             <div class="project-tags">
               <span>React</span><span>Node.js</span><span>REST APIs</span><span>MySQL</span>
             </div>
           </div>
-        </a>
+        </div>
 
-        <!-- Project 2: Rupnidhi Billing Software -->
-        <a href="https://rupnidhi.com/" target="_blank" class="project-card reveal-card" rel="noopener">
-          <div class="project-img-wrap">
-            <img src="rupnidhi.png" alt="Rupnidhi Billing Software Dashboard" />
-            <div class="project-overlay">
-              <i class="fas fa-external-link-alt"></i>
-              <span>Visit Live</span>
-            </div>
+        <!-- 2. Rupnidhi Billing Software -->
+        <div class="project-glass-card">
+          <div class="project-preview">
+            <img src="rupnidhi.png" alt="Rupnidhi Billing Software" loading="lazy" />
+            <a href="https://rupnidhi.com/" target="_blank" class="live-action-btn" rel="noopener">
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
-          <div class="project-info">
-            <span class="project-badge">Neoera Infotech</span>
-            <h3>RUPNIDHI BILLING SOFTWARE</h3>
-            <p class="project-sub">Commercial Invoicing &amp; Inventory System</p>
-            <p class="project-desc">Implemented high-reliability transaction tracking, automated invoice generation, tax computation, and synchronized backend accounting ledgers.</p>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="badge-company">Neoera Infotech</span>
+              <span class="badge-type">Enterprise ERP</span>
+            </div>
+            <h3 class="project-title">Rupnidhi Billing System</h3>
+            <p class="project-subtitle">Temple &amp; Trust Management Billing</p>
+            <p class="project-info-text">
+              Specialized financial billing software architected for temple management and trusts. Features automated donation receipts, pooja booking ledger reconciliation, asset logging, and tax audit reports.
+            </p>
             <div class="project-tags">
-              <span>Node.js</span><span>MySQL</span><span>JWT Auth</span><span>Express</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Project 3: Dhaswa Billing Software -->
-        <a href="https://rupnidhi.com/Dashwa/dashboard.php" target="_blank" class="project-card reveal-card" rel="noopener">
-          <div class="project-img-wrap">
-            <img src="dhaswa.png" alt="Dhaswa Billing POS Solution" />
-            <div class="project-overlay">
-              <i class="fas fa-external-link-alt"></i>
-              <span>Visit Live</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <span class="project-badge">Neoera Infotech</span>
-            <h3>DHASWA BILLING SOFTWARE</h3>
-            <p class="project-sub">Enterprise Retail Billing Solution</p>
-            <p class="project-desc">Designed performant point-of-sale inventory tables, daily transaction summaries, and role-based permissions with integrated verification workflows.</p>
-            <div class="project-tags">
-              <span>React</span><span>SQL</span><span>API Integration</span><span>JWT</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Project 4: Swarnalagna Matrimony -->
-        <a href="https://www.swarnalagna.com/" target="_blank" class="project-card reveal-card" rel="noopener">
-          <div class="project-img-wrap">
-            <img src="Swarnalagna.png" alt="Swarnalagna Matrimony Portal" />
-            <div class="project-overlay">
-              <i class="fas fa-external-link-alt"></i>
-              <span>Visit Live</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <span class="project-badge">Neoera Infotech</span>
-            <h3>SWARNALAGNA MATRIMONY</h3>
-            <p class="project-sub">Community Matchmaking &bull; Iyer Matrimony</p>
-            <p class="project-desc">Built candidate profile matchmaking, protected profile access controls, verification systems, and preference-based search algorithms.</p>
-            <div class="project-tags">
-              <span>Full-Stack</span><span>MySQL</span><span>Authentication</span><span>REST APIs</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Project 5: Anti-Keylogger System -->
-        <div class="project-card reveal-card">
-          <div class="project-img-wrap">
-            <img src="keylogger.jpg" alt="Anti Keylogger Defensive Software" />
-            <div class="project-overlay">
-              <i class="fas fa-user-shield"></i>
-              <span>Defensive Security</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <span class="project-badge independent">Own Project</span>
-            <h3>ANTI-KEYLOGGER SYSTEM</h3>
-            <p class="project-sub">Cybersecurity &amp; Real-Time Anomaly Detection</p>
-            <p class="project-desc">A defensive security utility detecting malicious low-level keystroke hooks, unauthorized process interception, and background process injection to protect credentials.</p>
-            <div class="project-tags">
-              <span>Cybersecurity</span><span>Process Monitor</span><span>Anomaly Detection</span><span>Security</span>
+              <span>Node.js</span><span>Express</span><span>MySQL</span><span>JWT Auth</span>
             </div>
           </div>
         </div>
 
-        <!-- Project 6: PV Academy -->
-        <a href="https://pvacademy.co.in" target="_blank" class="project-card reveal-card" rel="noopener">
-          <div class="project-img-wrap">
-            <img src="pvacademy.png" alt="PV Academy Tuition Centre Website" />
-            <div class="project-overlay">
-              <i class="fas fa-external-link-alt"></i>
-              <span>Visit Live</span>
-            </div>
+        <!-- 3. Dhaswa Billing Software -->
+        <div class="project-glass-card">
+          <div class="project-preview">
+            <img src="dhaswa.png" alt="Dhaswa Billing Software" loading="lazy" />
+            <a href="https://rupnidhi.com/Dashwa/dashboard.php" target="_blank" class="live-action-btn" rel="noopener">
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
-          <div class="project-info">
-            <span class="project-badge independent">Own Project</span>
-            <h3>PV ACADEMY</h3>
-            <p class="project-sub">Tuition Centre Education Platform</p>
-            <p class="project-desc">A modern education platform with course listings, faculty introductions, student testimonials, and online enquiry — designed for trust and clarity.</p>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="badge-company">Neoera Infotech</span>
+              <span class="badge-type">Industrial ERP</span>
+            </div>
+            <h3 class="project-title">Dhaswa Billing Solution</h3>
+            <p class="project-subtitle">Lathe Works &amp; Steel Industry POS</p>
+            <p class="project-info-text">
+              Custom inventory and industrial point-of-sale ERP built for lathe workshops and heavy steel fabricators. Tracks raw materials, job-work labor cost, automated GST invoicing, and real-time ledger accounting.
+            </p>
             <div class="project-tags">
-              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span>
+              <span>PHP</span><span>MySQL</span><span>JavaScript</span><span>Billing Logic</span>
             </div>
           </div>
-        </a>
+        </div>
+
+        <!-- 4. Swarnalagna Matrimony -->
+        <div class="project-glass-card">
+          <div class="project-preview">
+            <img src="Swarnalagna.png" alt="Swarnalagna Matrimony" loading="lazy" />
+            <a href="https://www.swarnalagna.com/" target="_blank" class="live-action-btn" rel="noopener">
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="badge-company">Neoera Infotech</span>
+              <span class="badge-type">AI Astrology</span>
+            </div>
+            <h3 class="project-title">Swarnalagna Matrimony</h3>
+            <p class="project-subtitle">Iyer Community Portal with Custom AI Engine</p>
+            <p class="project-info-text">
+              Developed candidate verification portals featuring an integrated AI Horoscope Engine that computes 10 Poruthams (Kuta matching), calculates doshas, and dynamically generates planetary Birth &amp; Navamsha charts.
+            </p>
+            <div class="project-tags">
+              <span>AI Chart Engine</span><span>Full-Stack</span><span>MySQL</span><span>REST APIs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. E-Bhojan App -->
+        <div class="project-glass-card">
+          <div class="project-preview">
+            <img src="ebhojan.png" alt="E-Bhojan Food &amp; Catering App" onerror="this.src='ebhojan.jpeg'" loading="lazy" />
+            <span class="mobile-app-indicator"><i class="fas fa-mobile-screen"></i> App</span>
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="badge-company">Neoera Infotech</span>
+              <span class="badge-type">Mobile Application</span>
+            </div>
+            <h3 class="project-title">E-Bhojan Food Delivery &amp; Catering</h3>
+            <p class="project-subtitle">Catering Reservation &amp; Bulk Ordering</p>
+            <p class="project-info-text">
+              Cross-platform mobile application developed with Flutter and Android Studio for instant food ordering and large-scale catering reservations, equipped with real-time menu management and order tracking.
+            </p>
+            <div class="project-tags">
+              <span>Flutter</span><span>Android Studio</span><span>Dart</span><span>REST APIs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Sahora Taxi App -->
+        <div class="project-glass-card">
+          <div class="project-preview">
+            <img src="sahora.png" alt="Sahora Taxi Booking Platform" onerror="this.src='sahora.jpeg'" loading="lazy" />
+            <span class="mobile-app-indicator"><i class="fas fa-taxi"></i> Mobility</span>
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="badge-company">Neoera Infotech</span>
+              <span class="badge-type">Mobility App</span>
+            </div>
+            <h3 class="project-title">Sahora Taxi Booking</h3>
+            <p class="project-subtitle">On-Demand Cab Dispatch System</p>
+            <p class="project-info-text">
+              City transit and outstation taxi booking system with driver dispatch logic, route calculation, fare estimation, and clean ride scheduling interfaces built during internship development.
+            </p>
+            <div class="project-tags">
+              <span>Flutter</span><span>Node.js</span><span>Geolocation</span><span>APIs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Anti-Keylogger AI System (Final Year Project) -->
+        <div class="project-glass-card featured-glow">
+          <div class="project-preview">
+            <img src="keylogger.jpg" alt="Anti Keylogger Anomaly Detection" loading="lazy" />
+            <span class="flag-badge"><i class="fas fa-shield-cat"></i> Final Year Project</span>
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="badge-independent">Independent &bull; Core Project</span>
+              <span class="badge-type">Cybersecurity AI</span>
+            </div>
+            <h3 class="project-title">Anti-Keylogger System via AI OS Anomaly Detection</h3>
+            <p class="project-subtitle">Defensive Operating System Security Utility</p>
+            <p class="project-info-text">
+              Real-time defensive system that monitors low-level OS hooks, unauthorized `SetWindowsHookEx` captures, process injections, and keyboard polling. Employs AI behavioral models to neutralize credential exfiltration.
+            </p>
+            <div class="project-tags">
+              <span>Python</span><span>AI Behavioral Model</span><span>OS Internals</span><span>Anomaly Detection</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. PV Academy -->
+        <div class="project-glass-card">
+          <div class="project-preview">
+            <img src="pvacademy.png" alt="PV Academy Platform" loading="lazy" />
+            <a href="https://pvacademy.co.in" target="_blank" class="live-action-btn" rel="noopener">
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="badge-chillbros">Chill Bros</span>
+              <span class="badge-type">Client Portal</span>
+            </div>
+            <h3 class="project-title">PV Academy</h3>
+            <p class="project-subtitle">Tuition Centre Education Platform</p>
+            <p class="project-info-text">
+              Developed as a client engagement through Chill Bros. A complete digital identity platform featuring syllabus guides, faculty directories, interactive course enrollment, and direct parent enquiries.
+            </p>
+            <div class="project-tags">
+              <span>JavaScript</span><span>HTML5/CSS3</span><span>Node.js</span><span>SEO</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Steganography Typo Security -->
+        <div class="project-glass-card">
+          <div class="project-preview">
+            <img src="steganography.png" alt="Steganography Typo Project" onerror="this.src='stegno.png'" loading="lazy" />
+            <span class="flag-badge"><i class="fas fa-lock"></i> R&amp;D</span>
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="badge-independent">Own Project</span>
+              <span class="badge-type">Security Research</span>
+            </div>
+            <h3 class="project-title">Typoglycemia Steganography Suite</h3>
+            <p class="project-subtitle">Hidden Cipher Encoding via Natural Language</p>
+            <p class="project-info-text">
+              A cryptographic communication tool leveraging typographical permutation patterns to conceal encrypted payloads within human-readable plain text without alerting standard DLP monitoring tools.
+            </p>
+            <div class="project-tags">
+              <span>Python</span><span>Cryptography</span><span>Data Hiding</span><span>NLP</span>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
   </section>
 
   <!-- EDUCATION SECTION -->
-  <section class="section reveal-section" id="education">
-    <div class="section-inner glass-card">
-      <div class="section-tag center-tag">My Journey</div>
-      <h2 class="section-title glowing-text center-title">EDUCATION</h2>
+  <section class="section" id="education">
+    <div class="section-inner glass-panel">
+      <div class="badge-tag center-tag">Academic Path</div>
+      <h2 class="panel-heading center-title">EDUCATION &amp; MILESTONES</h2>
 
-      <div class="timeline">
-        <div class="timeline-row reveal-card">
-          <div class="timeline-text left-text">
-            <div class="edu-badge"><i class="fas fa-school"></i> 10th Standard</div>
-            <h3>St. Thomas The Apostle Matriculation Higher Secondary School</h3>
-            <p>Completed Secondary School Leaving Certificate (SSLC) with distinction, building a strong academic foundation across Science, Mathematics, and Languages.</p>
+      <div class="timeline-glass">
+        <!-- SNS College -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card glass-card-sm">
+            <span class="timeline-time">2023 — 2027</span>
+            <h3>B.Tech — Computer Science &amp; Technology</h3>
+            <p class="timeline-inst">SNS College of Engineering, Coimbatore</p>
+            <p class="timeline-summary">
+              Specialized in Full Stack Web Engineering, Operating Systems, Computer Networks, and Cybersecurity. Led technical presentations, LeetCode competitive clubs, and developed anti-malware capstone projects.
+            </p>
           </div>
-          <div class="timeline-dot-wrap">
-            <div class="timeline-line"></div>
-            <div class="timeline-dot"></div>
-          </div>
-          <div class="timeline-image right-image"></div>
         </div>
 
-        <div class="timeline-row reveal-card">
-          <div class="timeline-image left-image"></div>
-          <div class="timeline-dot-wrap">
-            <div class="timeline-line"></div>
-            <div class="timeline-dot"></div>
+        <!-- 12th -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card glass-card-sm">
+            <span class="timeline-time">2021 — 2023</span>
+            <h3>Higher Secondary Certificate (HSC &bull; 12th)</h3>
+            <p class="timeline-inst">St. Thomas Matriculation Higher Secondary School, Thoothukudi</p>
+            <p class="timeline-summary">
+              Core subjects: Computer Science, Mathematics, Physics, and Chemistry. Established foundations in algorithmic thinking and C++/Python problem solving.
+            </p>
           </div>
-          <div class="timeline-text right-text">
-            <div class="edu-badge"><i class="fas fa-graduation-cap"></i> 12th Standard</div>
-            <h3>St. Thomas Matriculation Higher Secondary School, Thoothukudi</h3>
-            <p>Completed Higher Secondary Certificate (HSC) focusing on Computer Science, Mathematics, and Physics — establishing fundamentals in programming and algorithms.</p>
+        </div>
+
+        <!-- 10th -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card glass-card-sm">
+            <span class="timeline-time">2019 — 2021</span>
+            <h3>Secondary School Leaving Certificate (SSLC &bull; 10th)</h3>
+            <p class="timeline-inst">St. Thomas The Apostle Matriculation School</p>
+            <p class="timeline-summary">
+              Strong foundational academics across Science and Mathematics with active participation in science exhibitions and Olympiads.
+            </p>
           </div>
         </div>
       </div>
@@ -410,90 +649,105 @@
   </section>
 
   <!-- CONTACT SECTION -->
-  <section class="section reveal-section" id="contact">
-    <div class="section-inner glass-card">
-      <div class="section-tag center-tag">Let's Connect</div>
-      <h2 class="section-title glowing-text center-title">CONTACT ME</h2>
+  <section class="section" id="contact">
+    <div class="section-inner glass-panel">
+      <div class="badge-tag center-tag">Initiate Contact</div>
+      <h2 class="panel-heading center-title">LET'S BUILD SOMETHING IMPACTFUL</h2>
 
-      <div class="two-col contact-cols">
-        <div class="contact-social">
-          <p class="social-intro">Reach out through any platform. I respond within 24 hours.</p>
-          <div class="social-links">
-            <a href="https://wa.me/8248930293" target="_blank" class="social-link whatsapp" rel="noopener">
-              <i class="fab fa-whatsapp"></i>
+      <div class="two-col contact-layout">
+        
+        <!-- Channels -->
+        <div class="contact-channels">
+          <p class="contact-note">
+            Whether you require enterprise web apps, high-throughput billing systems, mobile applications in Flutter, or defensive cybersecurity consulting, feel free to connect directly.
+          </p>
+
+          <div class="direct-cards">
+            <a href="https://wa.me/918248930293" target="_blank" class="contact-card-glass" rel="noopener">
+              <div class="icon-bubble wa-bg"><i class="fab fa-whatsapp"></i></div>
               <div>
                 <strong>WhatsApp</strong>
-                <span>Chat directly with me</span>
+                <span>+91 82489 30293 (Direct Instant Chat)</span>
               </div>
             </a>
-            <a href="https://instagram.com/yourhandle" target="_blank" class="social-link instagram" rel="noopener">
-              <i class="fab fa-instagram"></i>
+
+            <a href="https://www.linkedin.com/in/saran-kumar-r" target="_blank" class="contact-card-glass" rel="noopener">
+              <div class="icon-bubble in-bg"><i class="fab fa-linkedin-in"></i></div>
               <div>
-                <strong>Instagram</strong>
-                <span>Follow my updates</span>
+                <strong>LinkedIn Profile</strong>
+                <span>linkedin.com/in/saran-kumar-r</span>
               </div>
             </a>
-            <a href="https://www.linkedin.com/in/saran-kumar-r" target="_blank" class="social-link linkedin" rel="noopener">
-              <i class="fab fa-linkedin-in"></i>
+
+            <a href="https://github.com/Ramsaranku" target="_blank" class="contact-card-glass" rel="noopener">
+              <div class="icon-bubble gh-bg"><i class="fab fa-github"></i></div>
               <div>
-                <strong>LinkedIn</strong>
-                <span>Saran Kumar R</span>
+                <strong>GitHub Repositories</strong>
+                <span>github.com/SaranKumar-R</span>
               </div>
             </a>
-            <a href="mailto:saran.r1408@gmail.com" class="social-link gmail">
-              <i class="fas fa-envelope"></i>
+
+            <a href="mailto:saran.r1408@gmail.com" class="contact-card-glass">
+              <div class="icon-bubble mail-bg"><i class="fas fa-envelope"></i></div>
               <div>
-                <strong>Gmail</strong>
+                <strong>Email Address</strong>
                 <span>saran.r1408@gmail.com</span>
               </div>
             </a>
           </div>
         </div>
 
-        <div class="contact-form-wrap">
-          <p class="form-intro">Send me a project enquiry or technical collaboration proposal.</p>
-          <div id="formMsg" class="form-msg"></div>
-          <div class="contact-form" id="contactForm">
+        <!-- Form -->
+        <div class="contact-form-glass glass-card-md">
+          <div id="formMsg" class="form-notification"></div>
+          <form id="contactForm" onsubmit="event.preventDefault(); sendEmail();">
             <div class="form-group">
-              <label>Full Name</label>
-              <input type="text" name="from_name" placeholder="Saran Kumar R" required />
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="from_name" placeholder="E.g. Saran Kumar R" required />
             </div>
+            
             <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" name="reply_to" placeholder="saran@example.com" required />
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="reply_to" placeholder="saran.@gmail.com" required />
             </div>
+
             <div class="form-group">
-              <label>Phone Number</label>
-              <input type="tel" name="phone" placeholder="+91 9876543210" />
+              <label for="phone">Phone Number (Optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" />
             </div>
+
             <div class="form-group">
-              <label>Service Needed</label>
-              <select name="service">
-                <option value="">— Select a Service —</option>
-                <option>Full-Stack Web Development</option>
-                <option>API &amp; Backend Engineering</option>
-                <option>Billing &amp; Inventory Software</option>
-                <option>Mobile App (Flutter)</option>
-                <option>Other</option>
+              <label for="service">Requirement Category</label>
+              <select id="service" name="service">
+                <option value="">Select Domain Needed</option>
+                <option value="Full-Stack Web App">Full-Stack Web Application (React &amp; Node)</option>
+                <option value="Enterprise Billing / ERP">Enterprise Billing &amp; ERP Solutions</option>
+                <option value="Mobile App (React Native)">Mobile App (Flutter)</option>
+                <option value="Other Collaboration">Technical Collaboration / Hiring</option>
               </select>
             </div>
+
             <div class="form-group">
-              <label>Message</label>
-              <textarea name="message" rows="4" placeholder="Tell me about your project..."></textarea>
+              <label for="message">Project Brief</label>
+              <textarea id="message" name="message" rows="4" placeholder="Briefly describe what you're looking to build..." required></textarea>
             </div>
-            <button type="button" class="btn btn-primary btn-full" id="submitBtn" onclick="sendEmail()">
-              <i class="fas fa-paper-plane"></i> Send Message
+
+            <button type="submit" id="submitBtn" class="btn btn-glass-primary w-full">
+              <i class="fas fa-paper-plane"></i> Transmit Message
             </button>
-          </div>
+          </form>
         </div>
+
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <p>Designed &amp; Developed by <span class="accent-glow">Saran Kumar R</span> &copy; 2026</p>
-    <p class="footer-sub">Full Stack Engineer &bull; Neoera Infotech</p>
+  <footer class="footer-glass">
+    <div class="footer-content">
+      <p class="footer-title">Designed &amp; Engineered by <span class="cyan-accent">Saran Kumar R</span> &copy; 2026</p>
+      <p class="footer-sub">Full Stack Developer &bull; Neoera Infotech Developer Intern &bull; Chill Bros</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
